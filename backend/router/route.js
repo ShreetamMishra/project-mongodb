@@ -34,7 +34,7 @@
 // export default router;
 
 // Update the import statement in route.js
-import { getItems, addItem, downloadFile } from '../controllers/items.js';
+import { getItems, addItem,getUserItems, downloadFile } from '../controllers/items.js';
 import upload from '../middleware/multer.js';
 // other imports...
 // Ensure correct file extension (.js)
@@ -62,8 +62,10 @@ router.route('/user/:username').get(controller.getUser);
 router.route('/generateOTP').get(controller.verifyUser, localVariables, controller.generateOTP);
 router.route('/verifyOTP').get(controller.verifyUser, controller.verifyOTP);
 router.route('/createResetSession').get(controller.createResetSession);
+router.route('/upload-file').post(upload.single("file"), addItem);
 router.route("/").get(getItems).post(upload.single("file"), addItem);
 router.route('/download/:id').get(downloadFile);
+router.route('/user-items/:semester/:subject').get(getUserItems);
 // router.get('/api/v1/items', getItems);
 
 // PUT Methods

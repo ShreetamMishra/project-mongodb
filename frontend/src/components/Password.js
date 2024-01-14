@@ -17,7 +17,7 @@ export default function Password() {
 
   const formik = useFormik({
     initialValues : {
-      password : 'admin@123'
+      password : ''
     },
     validate : passwordValidate,
     validateOnBlur: false,
@@ -31,10 +31,22 @@ export default function Password() {
         error : <b>Password Not Match!</b>
       });
 
+      // loginPromise.then(res => {
+      //   let { token } = res.data;
+      //   localStorage.setItem('token', token);
+      //   navigate('/profile')
+      // }
       loginPromise.then(res => {
         let { token } = res.data;
         localStorage.setItem('token', token);
-        navigate('/profile')
+        
+        if (username === 'admin123') {
+          // If the username and password match, navigate to '/upload'
+          navigate('/upload');
+        } else {
+          // For other cases, navigate to '/profile'
+          navigate('/profile');
+        }
       })
     }
   })

@@ -14,11 +14,22 @@ export const getItems = async (req, res) => {
 };
 
 export const addItem = asyncWrapper(async (req, res) => {
-  const { name } = req.body;
+  const { name, semester, subject, year } = req.body;
   const file = req.file.path;
-  const item = await Item.create({ name, file });
+  const item = await Item.create({ name, file, semester, subject, year });
   res.status(201).json({ item });
 });
+export const getUserItems = async (req, res) => {
+  const { semester, subject } = req.params;
+  try {
+    const items = await Item.find({ semester, subject });
+    res.status(200).json({ items });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);

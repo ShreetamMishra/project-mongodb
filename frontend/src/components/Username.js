@@ -15,14 +15,20 @@ export default function Username() {
 
   const formik = useFormik({
     initialValues : {
-      username : 'example123'
+      username : ''
     },
     validate : usernameValidate,
     validateOnBlur: false,
     validateOnChange: false,
     onSubmit : async values => {
-      setUsername(values.username);
-      navigate('/password')
+      // if (values.username === 'admin123') {
+      //   // If the username is 'admin123', navigate to '/update'
+      //   navigate('/password');
+      // } else {
+        // For other usernames, navigate to '/password'
+        setUsername(values.username);
+        navigate('/password');
+      // }
     }
   })
 
