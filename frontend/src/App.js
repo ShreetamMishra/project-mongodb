@@ -16,7 +16,9 @@ import Upload from './components/Upload';
 import { AuthorizeUser, ProtectRoute } from './middleware/auth';
 import Download from './components/Download';
 import SemesterSubjectSelection from './components/SemesterSubjectSelection';
+import SelectSem from './components/Selectsem';
 /** root routes */
+import Sem1 from './components/Sem1';
 const router = createBrowserRouter([
     {
         path : '/',
@@ -61,6 +63,14 @@ const router = createBrowserRouter([
     {
         path : '/select',
         element : <SemesterSubjectSelection></SemesterSubjectSelection>
+    },
+    {
+        path : '/selectsem',
+        element : <SelectSem></SelectSem>
+    },
+    {
+        path : '/sem1',
+        element : <Sem1></Sem1>
     },
 ])
 
