@@ -6,9 +6,9 @@ import download from "../assets/download-solid.svg";
 
 
 function Sem1() {
-  const [semester, setSemester] = useState('Semester1');
+  const [semester] = useState('Semester1');
   const [subject, setSubject] = useState('');
-  const [year, setYear] = useState('');
+  const [year] = useState('');
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -32,6 +32,14 @@ function Sem1() {
   };
 
   const downloadFile = async (id, fileName) => {
+    const isLoggedIn = !!localStorage.getItem('token');
+
+  // If not logged in, display an alert and navigate to /login
+  if (!isLoggedIn) {
+    alert("Please login first.");
+    window.location.href = "/login";
+    return; // Stop further execution
+  }
     try {
       const res = await axios.get(
         `http://localhost:8080/api/download/${id}`,
@@ -43,6 +51,7 @@ function Sem1() {
       link.download = fileName || "file.pdf";
       link.click();
     } catch (error) {
+      
       console.log(error);
     }
   };
@@ -81,7 +90,7 @@ function Sem1() {
       <div>
         {loading && <p>Loading...</p>}
         {error && <p>{error}</p>}
-        <div className='itemContainer'>
+        <div className='itemContainer text-[#ffff]'>
         {subjectSelected &&
           items
             .filter((item) => subject === '' || item.subject === subject)

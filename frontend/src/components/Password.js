@@ -45,7 +45,7 @@ export default function Password() {
           navigate('/upload');
         } else {
           // For other cases, navigate to '/profile'
-          navigate('/selectsem');
+          navigate('/');
         }
       })
     }

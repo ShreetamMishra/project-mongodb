@@ -14,33 +14,34 @@
   margin: 5px;
   cursor: pointer;
   border: 1px solid #ccc;
+  border-radius: 7px;
 }
 .sem-box:nth-child(1) {
-  background-color: #e63939; /* Light Red for Semester 1 */
+  background-color: #04d107; /* Light Red for Semester 1 */
 }
 
 .sem-box:nth-child(2) {
-  background-color: #45e745; /* Light Green for Semester 2 */
+  background-color: #04d107; /* Light Green for Semester 2 */
 }
 
 .sem-box:nth-child(3) {
-  background-color: #17c1f0; /* Light Blue for Semester 3 */
+  background-color: #04d107; /* Light Blue for Semester 3 */
 }
 
 .sem-box:nth-child(4) {
-  background-color: #dae233; /* Light Yellow for Semester 4 */
+  background-color: #04d107; /* Light Yellow for Semester 4 */
 }
 
 .sem-box:nth-child(5) {
-  background-color: #f48313; /* Light Orange for Semester 5 */
+  background-color: #04d107; /* Light Orange for Semester 5 */
 }
 
 .sem-box:nth-child(6) {
-  background-color: #f426ce; /* Light Purple for Semester 6 */
+  background-color: #04d107; /* Light Purple for Semester 6 */
 }
 
 .selected {
-  background-color: #66ccff; /* Light Sky Blue - Change this color for selected state */
+  background-color: #04d107; /* Light Sky Blue - Change this color for selected state */
 }
 @media screen and (max-width: 1000px){
   .select-sem-container {

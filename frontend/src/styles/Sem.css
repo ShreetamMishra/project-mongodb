@@ -61,27 +61,27 @@
 
   
   .subject-box:nth-child(1) {
-    background-color: #f37923; /* Light Red for subject 1 */
+    background-color: #04d107; /* Light Red for subject 1 */
   }
   
   .subject-box:nth-child(2) {
-    background-color: #ade512; /* Light Green for subject 2 */
+    background-color: #04d107; /* Light Green for subject 2 */
   }
   
   .subject-box:nth-child(3) {
-    background-color: #14eb34; /* Light Blue for subject 3 */
+    background-color: #04d107; /* Light Blue for subject 3 */
   }
   
   .subject-box:nth-child(4) {
-    background-color: #3848f6; /* Light Yellow for subject 4 */
+    background-color: #04d107; /* Light Yellow for subject 4 */
   }
   
   .subject-box:nth-child(5) {
-    background-color: #eb1e8e; /* Light Orange for subject 5 */
+    background-color: #04d107; /* Light Orange for subject 5 */
   }
   
   .subject-box:nth-child(6) {
-    background-color: #1ad2f3; /* Light Purple for subject 6 */
+    background-color: #04d107; /* Light Purple for subject 6 */
   }
   
   .itemBox {
@@ -111,19 +111,19 @@
   .item1:nth-child(1),
   .item1:nth-child(4),
   .item1:nth-child(7) {
-    background-color: #00fff7; /* Color for the first box */
+    background-color: #04d107; /* Color for the first box */
   }
   
   .item1:nth-child(2),
   .item1:nth-child(5),
   .item1:nth-child(8) {
-    background-color: #32e932; /* Color for the second box */
+    background-color: #04d107; /* Color for the second box */
   }
   
   .item1:nth-child(3),
   .item1:nth-child(6),
   .item1:nth-child(9) {
-    background-color: #bf00fa; /* Color for the third box */
+    background-color: #04d107; /* Color for the third box */
   }
   
   /* Add more nth-child rules as needed */

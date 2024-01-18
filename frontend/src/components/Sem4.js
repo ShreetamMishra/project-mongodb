@@ -3,9 +3,9 @@ import axios from 'axios';
 import Navbar from './Navbar';
 import download from "../assets/download-solid.svg";
 function Sem4() {
-  const [semester, setSemester] = useState('Semester4');
+  const [semester] = useState('Semester4');
   const [subject, setSubject] = useState('');
-  const [year, setYear] = useState('');
+  const [year] = useState('');
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);

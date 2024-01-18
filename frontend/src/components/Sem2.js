@@ -4,9 +4,9 @@ import Navbar from './Navbar';
 import "../styles/Sem.css";
 import download from "../assets/download-solid.svg";
 function Sem2() {
-  const [semester, setSemester] = useState('Semester2');
+  const [semester] = useState('Semester2');
   const [subject, setSubject] = useState('');
-  const [year, setYear] = useState('');
+  const [year] = useState('');
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
