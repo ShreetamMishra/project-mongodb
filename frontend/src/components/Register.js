@@ -10,13 +10,13 @@ import { registerUser, validateOTPAndRegister } from '../helper/helper';
 import styles from '../styles/Username.module.css';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
-
+import Navbar from './Navbar';
 axios.defaults.baseURL = process.env.REACT_APP_SERVER_DOMAIN;
 export default function Register() {
   const navigate = useNavigate();
   const [file, setFile] = useState('');
   const [showOTPField, setShowOTPField] = useState(false);
-
+  
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -28,7 +28,7 @@ export default function Register() {
     validateOnBlur: false,
     validateOnChange: false,
     onSubmit: async (values) => {
-      values.profile = file || ''; // Assign profile image base64 to values
+      // values.profile = file || ''; // Assign profile image base64 to values
       
       try {
         await registerUser(values);
@@ -78,7 +78,7 @@ export default function Register() {
       if (response.status === 201) {
         toast.success('OTP verification successful!');
         setTimeout(() => {
-          navigate('/success');
+          navigate('/login');
         }, 2000);
       } else {
         toast.error('Invalid OTP. Please try again.');
@@ -88,58 +88,58 @@ export default function Register() {
       toast.error('Error verifying OTP. Please try again.');
     }
   };
-
   return (
-    <div className="container mx-auto">
-      <Toaster position="top-center" reverseOrder={false} />
-      <div className="flex justify-center items-center h-screen">
-        <div className={styles.glass} style={{ width: '45%', paddingTop: '3em' }}>
-          <div className="title flex flex-col items-center">
-            <h4 className="text-5xl font-bold">Register</h4>
-            <span className="py-4 text-xl w-2/3 text-center text-gray-500">
-              Happy to join you!
-            </span>
-          </div>
+    <div>
+      <Navbar />
+      <div className="container mx-auto ">
+        <Toaster position="top-center" reverseOrder={false} />
+        <div className="flex justify-center items-center h-screen ">
+          <div className={styles.glass} style={{ width: '45%', paddingTop: '0em' }}>
 
-          <form className="py-1" onSubmit={formik.handleSubmit}>
-            <div className="profile flex justify-center py-4">
+            {!showOTPField ? (
+              // Display this section if OTP has not been sent
+              
+              <form className="" onSubmit={formik.handleSubmit}>
+                 <div className="profile flex justify-center py-4">
               <label htmlFor="profile">
                 <img src={file || avatar} className={styles.profile_img} alt="avatar" />
               </label>
               <input onChange={onUpload} type="file" id="profile" name="profile" />
             </div>
+                 <div className="textbox flex flex-col items-center gap-6">
+                <input
+                  {...formik.getFieldProps('email')}
+                  className={styles.textbox}
+                  type="text"
+                  placeholder="Email*"
+                />
+                <input
+                  {...formik.getFieldProps('username')}
+                  className={styles.textbox}
+                  type="text"
+                  placeholder="Username*"
+                />
+                <input
+                  {...formik.getFieldProps('password')}
+                  className={styles.textbox}
+                  type="text"
+                  placeholder="Password*"
+                />
+                <button className={styles.btn} type="submit">
+                  Register
+                </button>
+              </div>
 
-            <div className="textbox flex flex-col items-center gap-6">
-              <input
-                {...formik.getFieldProps('email')}
-                className={styles.textbox}
-                type="text"
-                placeholder="Email*"
-              />
-              <input
-                {...formik.getFieldProps('username')}
-                className={styles.textbox}
-                type="text"
-                placeholder="Username*"
-              />
-              <input
-                {...formik.getFieldProps('password')}
-                className={styles.textbox}
-                type="text"
-                placeholder="Password*"
-              />
-              <button className={styles.btn} type="submit">
-                Register
-              </button>
-            </div>
-
-            {showOTPField && (
+              </form>
+            ) : (
+              // Display this section if OTP has been sent
               <div className="textbox flex flex-col items-center gap-6">
                 <input
                   {...formik.getFieldProps('enteredOTP')}
-                  className={styles.textbox}
+                  className={styles.textbox1} 
                   type="text"
                   placeholder="Enter OTP*"
+              
                 />
                 <button className={styles.btn} type="button" onClick={handleOTPSubmit}>
                   Submit OTP
@@ -150,12 +150,12 @@ export default function Register() {
             <div className="text-center py-4">
               <span className="text-gray-500">
                 Already registered?{' '}
-                <Link className="text-red-500" to="/">
+                <Link className="text-red-500" to="/login">
                   Login Now
                 </Link>
               </span>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>

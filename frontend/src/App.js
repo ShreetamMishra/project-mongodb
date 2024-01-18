@@ -1,7 +1,7 @@
 import React from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-
+import Home from './components/Home';
 /** import all components */
 import Username from './components/Username';
 import Password from './components/Password';
@@ -19,10 +19,21 @@ import SemesterSubjectSelection from './components/SemesterSubjectSelection';
 import SelectSem from './components/Selectsem';
 /** root routes */
 import Sem1 from './components/Sem1';
+import Sem2 from './components/Sem2';
+import Sem3 from './components/Sem3';
+import Sem4 from './components/Sem4';
+import Sem5 from './components/Sem5';
+import Sem6 from './components/Sem6';
+import heroImage from './assets/bubble.png';
+
 const router = createBrowserRouter([
     {
-        path : '/',
+        path : '/login',
         element : <Username></Username>
+    },
+    {
+        path : '/',
+        element : <Home></Home>
     },
     {
         path : '/register',
@@ -72,12 +83,51 @@ const router = createBrowserRouter([
         path : '/sem1',
         element : <Sem1></Sem1>
     },
+    {
+        path : '/sem6',
+        element : <Sem6></Sem6>
+    },
+    {
+        path : '/sem5',
+        element : <Sem5></Sem5>
+    },
+    {
+        path : '/sem4',
+        element : <Sem4></Sem4>
+    },
+    {
+        path : '/sem3',
+        element : <Sem3></Sem3>
+    },
+    {
+        path : '/sem2',
+        element : <Sem2></Sem2>
+    },
+    
 ])
 
+// export default function App() {
+//   return (
+//     <main>
+//         <RouterProvider router={router}></RouterProvider>
+//     </main>
+//   )
+// }
 export default function App() {
-  return (
-    <main>
+    return (
+      <main>
+        <div className="hero">
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+        </div>
         <RouterProvider router={router}></RouterProvider>
-    </main>
-  )
-}
+      </main>
+    );
+  }

@@ -6,7 +6,7 @@ import { resetPassword } from '../helper/helper'
 import { useAuthStore } from '../store/store';
 import { useNavigate, Navigate } from 'react-router-dom';
 import useFetch from '../hooks/fetch.hook'
-
+import Navbar from './Navbar';
 import styles from '../styles/Username.module.css';
 
 export default function Reset() {
@@ -17,8 +17,8 @@ export default function Reset() {
 
   const formik = useFormik({
     initialValues : {
-      password : 'admin@123',
-      confirm_pwd: 'admin@123'
+      password : '',
+      confirm_pwd: ''
     },
     validate : resetPasswordValidation,
     validateOnBlur: false,
@@ -44,6 +44,8 @@ export default function Reset() {
   if(status && status !== 201) return <Navigate to={'/password'} replace={true}></Navigate>
 
   return (
+    <div>
+      <Navbar />
     <div className="container mx-auto">
 
       <Toaster position='top-center' reverseOrder={false}></Toaster>
@@ -69,6 +71,6 @@ export default function Reset() {
 
         </div>
       </div>
-    </div>
+    </div></div>
   )
 }

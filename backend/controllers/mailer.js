@@ -16,8 +16,8 @@ let transporter = nodemailer.createTransport({
 let MailGenerator = new Mailgen({
     theme: "default",
     product : {
-        name: "Mailgen",
-        link: 'https://mailgen.js/'
+        name: "Jitu",
+        link: 'http://localhost:3000/'
     }
 })
 

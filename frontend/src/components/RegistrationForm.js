@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import { useFormik } from 'formik';
 import { validateOTPAndRegister } from '../helper/helper'; // Import your OTP validation function
-
+import Navbar from './Navbar';
 import styles from '../styles/Username.module.css';
 
 const RegistrationForm = () => {
@@ -32,6 +32,8 @@ const RegistrationForm = () => {
   });
 
   return (
+    <div>
+      <Navbar />
     <div className="container mx-auto">
       <Toaster position='top-center' reverseOrder={false}></Toaster>
       <div className='flex justify-center items-center h-screen'>
@@ -56,7 +58,7 @@ const RegistrationForm = () => {
           </form>
         </div>
       </div>
-    </div>
+    </div></div>
   );
 };
 

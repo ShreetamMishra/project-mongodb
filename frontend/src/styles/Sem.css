@@ -1,0 +1,155 @@
+.selected-subject-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+   /* Change color as needed */
+  padding: 10px;
+  margin: 10px;
+}
+.hello2{
+    padding: 10px 250px 0 250px;
+
+}
+@media screen and (max-width: 1000px){
+  .hello2 {
+   
+    padding: 100px 150px 0 150px;
+    
+  }
+}
+@media screen and (max-width: 500px){
+  .hello2{
+    padding: 100px 30px 0 60px;
+  }
+}
+@media screen and (max-width: 768px){
+  .hello2 {
+    padding: 100px 100px 0 100px;
+  }
+}
+.selected-subject-box strong {
+  font-weight: bold;
+}
+
+.subject-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+}
+
+
+.itemBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.itemBox h3 {
+  margin: 5px 0;
+}
+
+.itemBox button {
+  margin-top: 10px;
+}
+
+  
+  .subject-box:nth-child(1) {
+    background-color: #f37923; /* Light Red for subject 1 */
+  }
+  
+  .subject-box:nth-child(2) {
+    background-color: #ade512; /* Light Green for subject 2 */
+  }
+  
+  .subject-box:nth-child(3) {
+    background-color: #14eb34; /* Light Blue for subject 3 */
+  }
+  
+  .subject-box:nth-child(4) {
+    background-color: #3848f6; /* Light Yellow for subject 4 */
+  }
+  
+  .subject-box:nth-child(5) {
+    background-color: #eb1e8e; /* Light Orange for subject 5 */
+  }
+  
+  .subject-box:nth-child(6) {
+    background-color: #1ad2f3; /* Light Purple for subject 6 */
+  }
+  
+  .itemBox {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+    margin-bottom: 50px;
+  }
+  .itemContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* height: 100vh; */
+    padding: 0 150px 0 150px;
+  }
+  
+  .item1 {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width:80%;
+    height: vh;
+  }
+  
+  .item1:nth-child(1),
+  .item1:nth-child(4),
+  .item1:nth-child(7) {
+    background-color: #00fff7; /* Color for the first box */
+  }
+  
+  .item1:nth-child(2),
+  .item1:nth-child(5),
+  .item1:nth-child(8) {
+    background-color: #32e932; /* Color for the second box */
+  }
+  
+  .item1:nth-child(3),
+  .item1:nth-child(6),
+  .item1:nth-child(9) {
+    background-color: #bf00fa; /* Color for the third box */
+  }
+  
+  /* Add more nth-child rules as needed */
+  
+  
+  .itemBox1 {
+    width: 100%;
+  }
+  @media (max-width: 500px){
+    .itemContainer{
+      padding: 0 20px 0 20px;
+    }
+  }
+  @media (max-width: 768px) {
+    .itemBox1 {
+      width: 80%;
+    }
+  }
+  
+  .itemBox1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .buttonContainer {
+    margin-top: 10px; /* Adjust the margin as needed */
+  }
+  

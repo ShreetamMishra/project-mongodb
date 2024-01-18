@@ -7,7 +7,7 @@ import convertToBase64 from '../helper/convert';
 import useFetch from '../hooks/fetch.hook';
 import { updateUser } from '../helper/helper'
 import { useNavigate } from 'react-router-dom'
-
+import Navbar from './Navbar';
 import styles from '../styles/Username.module.css';
 import extend from '../styles/Profile.module.css'
 
@@ -58,21 +58,18 @@ export default function Profile() {
   if(serverError) return <h1 className='text-xl text-red-500'>{serverError.message}</h1>
 
   return (
+    <div>
+      <Navbar />
     <div className="container mx-auto">
 
       <Toaster position='top-center' reverseOrder={false}></Toaster>
 
       <div className='flex justify-center items-center h-screen'>
-        <div className={`${styles.glass} ${extend.glass}`} style={{ width: "45%", paddingTop: '3em'}}>
+        <div className={`${styles.glass} ${extend.glass}`} style={{ width: "45%", paddingTop: '1em'}}>
 
-          <div className="title flex flex-col items-center">
-            <h4 className='text-5xl font-bold'>Profile</h4>
-            <span className='py-4 text-xl w-2/3 text-center text-gray-500'>
-                You can update the details.
-            </span>
-          </div>
+          
 
-          <form className='py-1' onSubmit={formik.handleSubmit}>
+          <form className='' onSubmit={formik.handleSubmit}>
               <div className='profile flex justify-center py-4'>
                   <label htmlFor="profile">
                     <img src={apiData?.profile || file || avatar} className={`${styles.profile_img} ${extend.profile_img}`} alt="avatar" />
@@ -107,7 +104,7 @@ export default function Profile() {
 
         </div>
       </div>
-    </div>
+    </div></div>
   )
 }
 

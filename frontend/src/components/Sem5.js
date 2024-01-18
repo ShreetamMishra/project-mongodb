@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from './Navbar';
-import "../styles/Sem.css";
 import download from "../assets/download-solid.svg";
-
-
-function Sem1() {
-  const [semester, setSemester] = useState('Semester1');
+function Sem5() {
+  const [semester, setSemester] = useState('Semester5');
   const [subject, setSubject] = useState('');
   const [year, setYear] = useState('');
   const [items, setItems] = useState([]);
@@ -14,7 +11,7 @@ function Sem1() {
   const [error, setError] = useState(null);
   const [subjectSelected, setSubjectSelected] = useState(false);
 
-  const subjects = ["Imperative Programming", "Digital Electronics","Operating Systems", "Discrete Mathematics","Ability Enhancement Skill", "Communication Skills"];
+  const subjects = ["Network Security", "Asp.Net","Software Testing", "Advanced Java","Linux Administration"];
 
   const getItems = async () => {
     setLoading(true);
@@ -57,9 +54,9 @@ function Sem1() {
   }, [semester, subject, year]);
 
   return (
-    <div> <Navbar />
+    <div><Navbar />
     <div>
-      <h1 className='flex flex-row justify-center mt-10 font-bold text-[#ffff] text-[30px]'>BSc IT Semester I</h1>
+      <h1 className='flex flex-row justify-center mt-10 font-bold text-[#ffff] text-[30px]'>Semester 5</h1>
       <div className='hello2 font-bold text-[#ffff]'>
         {subjectSelected ? (
           <div className={`selected-subject-box`}>
@@ -106,4 +103,4 @@ function Sem1() {
   );
 }
 
-export default Sem1;
+export default Sem5;

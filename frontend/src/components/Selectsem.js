@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "../styles/SelectSem.css";
-
+import Navbar from './Navbar';
 function SelectSem() {
   const [selectedSemester, setSelectedSemester] = useState(null);
   const navigate = useNavigate();
@@ -35,44 +35,45 @@ function SelectSem() {
   };
 
   return (
-    <div className="select-sem-container">
+    <div> <Navbar />
+    <div className="select-sem-container text-[#ffff]">
       <div
-        className={`sem-box ${selectedSemester === 1 ? 'selected' : ''}`}
+        className={`sem-box ${selectedSemester === 1 ? 'selected' : ''} font-bold`}
         onClick={() => handleSemesterClick(1)}
       >
-        Semester 1
+        BSc IT Semester I
       </div>
       <div
-        className={`sem-box ${selectedSemester === 2 ? 'selected' : ''}`}
+        className={`sem-box ${selectedSemester === 2 ? 'selected' : ''} font-bold`}
         onClick={() => handleSemesterClick(2)}
       >
-        Semester 2
+        BSc IT Semester II
       </div>
       <div
-        className={`sem-box ${selectedSemester === 3 ? 'selected' : ''}`}
+        className={`sem-box ${selectedSemester === 3 ? 'selected' : ''} font-bold`}
         onClick={() => handleSemesterClick(3)}
       >
-        Semester 3
+        BSc IT Semester III
       </div>
       <div
-        className={`sem-box ${selectedSemester === 4 ? 'selected' : ''}`}
+        className={`sem-box ${selectedSemester === 4 ? 'selected' : ''} font-bold`}
         onClick={() => handleSemesterClick(4)}
       >
-        Semester 4
+        BSc IT Semester IV
       </div>
       <div
-        className={`sem-box ${selectedSemester === 5 ? 'selected' : ''}`}
+        className={`sem-box ${selectedSemester === 5 ? 'selected' : ''} font-bold`}
         onClick={() => handleSemesterClick(5)}
       >
-        Semester 5
+        TY BSc IT Semester V
       </div>
-      <div
-        className={`sem-box ${selectedSemester === 6 ? 'selected' : ''}`}
+      <div 
+        className={`sem-box ${selectedSemester === 6 ? 'selected' : ''} font-bold`}
         onClick={() => handleSemesterClick(6)}
       >
-        Semester 6
+        TY BSc IT Semester VI
       </div>
-    </div>
+    </div></div>
   );
 }
 

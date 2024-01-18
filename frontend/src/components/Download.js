@@ -12,8 +12,12 @@ const Download = () => {
   const [year, setYear] = useState("2022");
 
   const semesterSubjects = {
-    "1stSem": ["C", "C++"],
-    "2ndSem": ["Java", "Python"],
+    "1stSem": ["Imperative Programming", "Digital Electronics","Operating Systems", "Discrete Mathematics","Ability Enhancement Skill", "Communication Skills"],
+    "2ndSem": ["Object-oriented Programming", "Microprocessor Architecture","Web Programming", "Numerical and Statistical Methods","Ability Enhancement Skill", "Green Computing"],
+    "3rdSem": ["Python Programming", "Data Structures","Computer Networks", "Database Management Systems","Applied Mathematics", "Mobile Programming Practical"],
+    "4thSem": ["Introduction to Embedded Systems", "Computer-Oriented Statistical Techniques","Software Engineering", "Computer Graphics and Animation","Computer Graphics and Animation", "Core Java Practical"],
+    "5thSem": ["Network Security", "Asp.Net","Software Testing", "Advanced Java","Linux Administration"],
+    "6thSem": ["Internet Technology", "Project Management","Information Technology service management", "Electives","Cyber laws", "Geographic Informations Systems"],
     // Add more semesters and subjects as needed
   };
 
@@ -65,6 +69,10 @@ const Download = () => {
             <option value="">Select Semester</option>
           <option value="1stSem">1st Semester</option>
           <option value="2ndSem">2nd Semester</option>
+          <option value="3rdSem">3rd Semester</option>
+          <option value="4thSem">4th Semester</option>
+          <option value="5thSem">5th Semester</option>
+          <option value="6thSem">6th Semester</option>
           {/* Add more semester options as needed */}
         </select>
 

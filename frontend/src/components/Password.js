@@ -8,7 +8,7 @@ import useFetch from '../hooks/fetch.hook';
 import { useAuthStore } from '../store/store'
 import { verifyPassword } from '../helper/helper'
 import styles from '../styles/Username.module.css';
-
+import Navbar from './Navbar';
 export default function Password() {
 
   const navigate = useNavigate()
@@ -45,7 +45,7 @@ export default function Password() {
           navigate('/upload');
         } else {
           // For other cases, navigate to '/profile'
-          navigate('/profile');
+          navigate('/selectsem');
         }
       })
     }
@@ -54,7 +54,8 @@ export default function Password() {
   if(isLoading) return <h1 className='text-2xl font-bold'>isLoading</h1>;
   if(serverError) return <h1 className='text-xl text-red-500'>{serverError.message}</h1>
 
-  return (
+  return (<div>
+    <Navbar />
     <div className="container mx-auto">
 
       <Toaster position='top-center' reverseOrder={false}></Toaster>
@@ -62,12 +63,6 @@ export default function Password() {
       <div className='flex justify-center items-center h-screen'>
         <div className={styles.glass}>
 
-          <div className="title flex flex-col items-center">
-            <h4 className='text-5xl font-bold'>Hello {apiData?.firstName || apiData?.username}</h4>
-            <span className='py-4 text-xl w-2/3 text-center text-gray-500'>
-              Explore More by connecting with us.
-            </span>
-          </div>
 
           <form className='py-1' onSubmit={formik.handleSubmit}>
               <div className='profile flex justify-center py-4'>
@@ -87,6 +82,6 @@ export default function Password() {
 
         </div>
       </div>
-    </div>
+    </div></div>
   )
 }
