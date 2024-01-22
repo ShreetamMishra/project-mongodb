@@ -7,9 +7,8 @@ const Upload = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const fileInputRef = useRef(null);
-  const fileInputRefQuestion = useRef(null); // Separate ref for question file input
-  const fileInputRefAnswer = useRef(null); // Separate ref for answer file input
-  // Add this state variable at the beginning of your functional component
+  const fileInputRefQuestion = useRef(null); 
+  const fileInputRefAnswer = useRef(null); 
   const [answerFileChosen, setAnswerFileChosen] = useState(false);
 
   const [semester, setSemester] = useState("");
