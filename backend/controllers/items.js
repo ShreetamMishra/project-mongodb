@@ -1,5 +1,4 @@
 import Item from "../model/Item.js";
-import path from "path";
 import asyncWrapper from "../middleware/asyncWrapper.js";
 
 import { fileURLToPath } from 'url';
@@ -14,9 +13,9 @@ export const getItems = async (req, res) => {
 };
 
 export const addItem = asyncWrapper(async (req, res) => {
-  const { name, semester, subject, year } = req.body;
+  const { semester, subject, year } = req.body;
   const file = req.file.path;
-  const item = await Item.create({ name, file, semester, subject, year });
+  const item = await Item.create({ file, semester, subject, year });
   res.status(201).json({ item });
 });
 export const getUserItems = async (req, res) => {

@@ -14,8 +14,6 @@ import RegistrationForm from './components/RegistrationForm';
 import Upload from './components/Upload';
 /** auth middleware */
 import { AuthorizeUser, ProtectRoute } from './middleware/auth';
-import Download from './components/Download';
-import SemesterSubjectSelection from './components/SemesterSubjectSelection';
 import SelectSem from './components/Selectsem';
 /** root routes */
 import Sem1 from './components/Sem1';
@@ -67,14 +65,7 @@ const router = createBrowserRouter([
         path : '/upload',
         element : <Upload></Upload>
     },
-    {
-        path : '/download',
-        element : <Download></Download>
-    },
-    {
-        path : '/select',
-        element : <SemesterSubjectSelection></SemesterSubjectSelection>
-    },
+  
     {
         path : '/',
         element : <SelectSem></SelectSem>

@@ -46,23 +46,7 @@ export default function Register() {
     setFile(base64);
   };
 
-  // const handleOTPSubmit = async () => {
-  //   try {
-  //     const otpVerificationResult = await validateOTPAndRegister(formik.values.enteredOTP);
-      
-  //     if (otpVerificationResult.success) {
-  //       toast.success('OTP verification successful!');
-  //       setTimeout(() => {
-  //         navigate('/success');
-  //       }, 2000);
-  //     } else {
-  //       toast.error('Invalid OTP. Please try again.');
-  //     }
-  //   } catch (error) {
-  //     console.error('Error verifying OTP:', error);
-  //     toast.error('Error verifying OTP. Please try again.');
-  //   }
-  // };
+
   const handleOTPSubmit = async () => {
     try {
       const { enteredOTP, email, username, password } = formik.values; // Extract required values

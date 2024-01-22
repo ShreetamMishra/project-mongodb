@@ -8,7 +8,7 @@ const Upload = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const fileInputRef = useRef(null);
-  const [name, setName] = useState("");
+
   const [semester, setSemester] = useState("");
   const [subject, setSubject] = useState("");
   const [year, setYear] = useState("");
@@ -47,14 +47,14 @@ const Upload = () => {
     setError(null);
     try {
       const formData = new FormData();
-      formData.append("name", name);
+      // formData.append("name", name);
       formData.append("file", fileInputRef.current.files[0]);
       formData.append("semester", semester);
       formData.append("subject", subject);
       formData.append("year", year);
 
       await axios.post("http://localhost:8080/api/upload-file", formData);
-      setName("");
+  
       fileInputRef.current.value = null;
       getItems(); // Refresh the items list after adding
     } catch (error) {
@@ -117,12 +117,7 @@ const Upload = () => {
           <option value="2024">2024</option>
           {/* Add other years as needed */}
         </select>
-        <input
-          type="text"
-          placeholder="Add Code"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
+       
         <input type="file" className="w-10" ref={fileInputRef} />
         <button className="addButton" onClick={addItem} disabled={loading}>
           {loading ? "Adding..." : "Add"}
@@ -141,7 +136,7 @@ const Upload = () => {
                 <h3>{item.semester}</h3>
                 <h3>{item.subject}</h3>
                 <h3>{item.year}</h3>
-                <h3>{item.name}</h3>
+                
                 <button onClick={() => downloadFile(item._id, item.fileName)}>
                   Download File
                 </button>

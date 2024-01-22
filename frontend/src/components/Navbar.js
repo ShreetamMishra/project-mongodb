@@ -10,11 +10,6 @@ function Navbar() {
   const userLogout = () => {
     localStorage.removeItem('token');
     setIsLoggedIn(false);
-    // You can navigate to the desired location using React Router or any other navigation library
-    // For example, using React Router's useHistory hook
-    // import { useHistory } from 'react-router-dom';
-    // const history = useHistory();
-    // history.push('/');
   };
 
   const toggleDropdown = () => {

@@ -31,11 +31,7 @@ export default function Password() {
         error : <b>Password Not Match!</b>
       });
 
-      // loginPromise.then(res => {
-      //   let { token } = res.data;
-      //   localStorage.setItem('token', token);
-      //   navigate('/profile')
-      // }
+    
       loginPromise.then(res => {
         let { token } = res.data;
         localStorage.setItem('token', token);

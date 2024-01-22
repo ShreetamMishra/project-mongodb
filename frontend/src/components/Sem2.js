@@ -88,7 +88,7 @@ function Sem2() {
               <div className="item1" key={item._id}>
                 <div className="itemBox1">
   <h3>
-    {item.semester} {item.subject} ({item.year}) {item.name}
+    {item.semester} {item.subject} ({item.year}) 
   </h3>
   <div className="buttonContainer">
     <button onClick={() => downloadFile(item._id, item.fileName)}>
