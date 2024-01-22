@@ -4,8 +4,8 @@ import { Router } from "express";
 import * as controller from '../controllers/appController.js';
 import { registerMail } from '../controllers/mailer.js'
 import Auth, { localVariables } from '../middleware/auth.js';
-
-
+import { downloadAnswerFile } from '../controllers/items.js';
+import { addAnswer } from '../controllers/items.js';
 const router = Router();
 // POST Methods
 router.route('/register').post(controller.register);
@@ -21,9 +21,12 @@ router.route('/generateOTP').get(controller.verifyUser, localVariables, controll
 router.route('/verifyOTP').get(controller.verifyUser, controller.verifyOTP);
 router.route('/createResetSession').get(controller.createResetSession);
 router.route('/upload-file').post(upload.single("file"), addItem);
-router.route("/").get(getItems).post(upload.single("file"), addItem);
-router.route('/download/:id').get(downloadFile);
+router.route('/').get(getItems).post(upload.single("file"), addItem);
 router.route('/user-items/:semester/:subject').get(getUserItems);
+router.route('/download/:id').get(downloadFile);
+
+router.route('/download-answer/:id').get(downloadAnswerFile);
+router.route('/upload-answer/:id').post(upload.single("answerFile"), addAnswer);
 
 
 // PUT Methods

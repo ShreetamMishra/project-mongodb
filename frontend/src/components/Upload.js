@@ -8,6 +8,8 @@ const Upload = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const fileInputRef = useRef(null);
+  const fileInputRefQuestion = useRef(null); // Separate ref for question file input
+  const fileInputRefAnswer = useRef(null); // Separate ref for answer file input
 
   const [semester, setSemester] = useState("");
   const [subject, setSubject] = useState("");
@@ -47,15 +49,14 @@ const Upload = () => {
     setError(null);
     try {
       const formData = new FormData();
-      // formData.append("name", name);
-      formData.append("file", fileInputRef.current.files[0]);
+      formData.append("file", fileInputRefQuestion.current.files[0]);
       formData.append("semester", semester);
       formData.append("subject", subject);
       formData.append("year", year);
 
       await axios.post("http://localhost:8080/api/upload-file", formData);
-  
-      fileInputRef.current.value = null;
+
+      fileInputRefQuestion.current.value = null;
       getItems(); // Refresh the items list after adding
     } catch (error) {
       setError("Error adding item");
@@ -66,6 +67,7 @@ const Upload = () => {
 
   const downloadFile = async (id, fileName) => {
     try {
+      
       const res = await axios.get(
         `http://localhost:8080/api/download/${id}`,
         { responseType: "blob" }
@@ -73,16 +75,61 @@ const Upload = () => {
       const blob = new Blob([res.data], { type: res.data.type });
       const link = document.createElement("a");
       link.href = window.URL.createObjectURL(blob);
-      link.download = fileName || "file.pdf"; // Set default filename if not available
+      link.download = fileName || "file.pdf";
       link.click();
     } catch (error) {
       console.log(error);
     }
   };
 
+  const downloadAnswerFile = async (id, fileName) => {
+    try {
+      const res = await axios.get(
+        `http://localhost:8080/api/download-answer/${id}`,
+        { responseType: "blob" }
+      );
+      const blob = new Blob([res.data], { type: res.data.type });
+      const link = document.createElement("a");
+      link.href = window.URL.createObjectURL(blob);
+      link.download = fileName || "answerFile.pdf";
+      link.click();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const uploadAnswer = async (id) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const fileInput = fileInputRef.current;
+  
+      if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
+        setError("Please select a file for the answer");
+        setLoading(false);
+        return;
+      }
+  
+      const formData = new FormData();
+      formData.append("answerFile", fileInput.files[0]);
+  
+      await axios.post(`http://localhost:8080/api/upload-answer/${id}`, formData);
+  
+      fileInput.value = null; // Clear the file input after uploading
+      getItems(); // Refresh the items list after adding an answer
+    } catch (error) {
+      setError("Error uploading answer");
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  
+
   useEffect(() => {
     getItems();
   }, []);
+
 
   return (
     <div> <Navbar />
@@ -118,7 +165,7 @@ const Upload = () => {
           {/* Add other years as needed */}
         </select>
        
-        <input type="file" className="w-10" ref={fileInputRef} />
+        <input type="file" className="w-10" ref={fileInputRefQuestion} />
         <button className="addButton" onClick={addItem} disabled={loading}>
           {loading ? "Adding..." : "Add"}
         </button>
@@ -140,6 +187,30 @@ const Upload = () => {
                 <button onClick={() => downloadFile(item._id, item.fileName)}>
                   Download File
                 </button>
+                {item.answerFile ? (
+  <button onClick={() => downloadAnswerFile(item._id)}>
+    Download Answer File
+  </button>
+) : (
+  <div>
+    <label htmlFor="answerFileInput">Select Answer File:</label>
+    <input
+      type="file"
+      id="answerFileInput"
+      ref={fileInputRef}
+      style={{ display: 'none' }}
+    />
+    <button onClick={() => fileInputRef.current.click()} disabled={loading}>
+      Choose File
+    </button>
+    <button onClick={() => uploadAnswer(item._id)} disabled={loading}>
+      {loading ? "Uploading..." : "Upload Answer"}
+    </button>
+  </div>
+)}
+
+
+
               </div>
             </div>
           ))

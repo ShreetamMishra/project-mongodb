@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from "../assets/content-writing.png"
 import '../styles/Navbar.css'; // Import a separate CSS file for styling
 
-function Navbar() {
+const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
   const [showDropdown, setShowDropdown] = useState(false);
 
