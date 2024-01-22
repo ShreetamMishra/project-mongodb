@@ -212,3 +212,13 @@
 
 
 }
+.choose{
+  display: flex !important;
+  background-color: #93a0b1 !important;
+  /* justify-items: center !important; */
+  /* align-items: center !important; */
+  border: 0.2px solid #000000 !important;
+  height: 7px !important;
+  padding: 4px 20px 23px 17px !important;
+  
+}

@@ -13,7 +13,6 @@ export const getItems = asyncWrapper(async (req, res) => {
 });
 
 export const addItem = asyncWrapper(async (req, res) => {
-  console.log(req); // Log the entire req object
   const { semester, subject, year } = req.body;
   const file = req.file.path;
   const item = await Item.create({ file, semester, subject, year });
