@@ -5,6 +5,7 @@ import styles from '../styles/Username.module.css';
 import { generateOTP, verifyOTP } from '../helper/helper';
 import { useNavigate } from 'react-router-dom'
 import Navbar from './Navbar';
+import "../styles/Recovery.css";
 export default function Recovery() {
 
   const { username } = useAuthStore(state => state.auth);
@@ -60,19 +61,19 @@ export default function Recovery() {
       <div className='flex justify-center items-center h-screen'>
         <div className={styles.glass}>
 
-          <div className="title flex flex-col items-center">
+          <div className="title flex flex-col items-center max850:hidden">
             <h4 className='text-5xl font-bold'>Recovery</h4>
-            <span className='py-4 text-xl w-2/3 text-center text-gray-500'>
+            <span className='py-4 text-xl w-2/3 text-center text-gray-500 '>
                 Enter OTP to recover password.
             </span>
           </div>
 
-          <form className='pt-20' onSubmit={onSubmit}>
+          <form className='pt-20 ' onSubmit={onSubmit}>
 
               <div className="textbox flex flex-col items-center gap-6">
 
                   <div className="input text-center">
-                    <span className='py-4 text-sm text-left text-gray-500'>
+                    <span className='py-4 text-sm text-left text-gray-500 max850:hidden'>
                       Enter 6 digit OTP sent to your email address.
                     </span>
                     <input onChange={(e) => setOTP(e.target.value) } className={styles.textbox} type="text" placeholder='OTP' />

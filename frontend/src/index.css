@@ -13,7 +13,7 @@ body{
     background-image: url('./assets/background copy.png');
     /* margin-left: 10px; */
     overflow: hidden;
-
+    height:100%;
 }
 .hero{
     width: 100%;
@@ -21,7 +21,7 @@ body{
     align-items: center;
     justify-content: space-around;
     position: absolute;
-    bottom: -70px;
+    bottom: 0px;
     /* overflow: hidden; */
     }  
     .hero img{

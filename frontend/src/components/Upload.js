@@ -232,7 +232,8 @@ const Upload = () => {
                 <div className="item" key={item._id}>
                   <div className="itemBox">
                     <h3>{item.semester}</h3>
-                    <h3>{item.subject}</h3>
+                    <div className="flex items-center ">
+                    <h3 className="flex items-center justify-center">{item.subject}</h3> </div>
                     <h3>{item.year}</h3>
 
                     <button

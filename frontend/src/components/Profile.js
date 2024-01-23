@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom'
 import Navbar from './Navbar';
 import styles from '../styles/Username.module.css';
 import extend from '../styles/Profile.module.css'
-
+import '../styles/Profile.css';
 export default function Profile() {
 
   const [file, setFile] = useState();

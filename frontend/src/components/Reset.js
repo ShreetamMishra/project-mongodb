@@ -8,7 +8,7 @@ import { useNavigate, Navigate } from 'react-router-dom';
 import useFetch from '../hooks/fetch.hook'
 import Navbar from './Navbar';
 import styles from '../styles/Username.module.css';
-
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 export default function Reset() {
 
   const { username } = useAuthStore(state => state.auth);
