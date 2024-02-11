@@ -7,13 +7,13 @@ import download from "../assets/download-solid.svg";
 function Sem1() {
   const [semester] = useState("Semester1");
   const [subject, setSubject] = useState("");
-  const [year] = useState("");
+  const [year, setYear] = useState("");
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [subjectSelected, setSubjectSelected] = useState(false);
-  const fileInputRef = useRef(null);
-  const [answerFileChosen, setAnswerFileChosen] = useState(false);
+  const [answerFileChosen, setAnswerFileChosen] = useState({});
+  const fileInputRefs = useRef({});
 
   const subjects = [
     "Imperative Programming",
@@ -32,13 +32,13 @@ function Sem1() {
         params: { semester, subject, year },
       });
       setItems(res.data.items);
+      
     } catch (error) {
       setError("Error fetching items");
     } finally {
       setLoading(false);
     }
   };
-
   const downloadFile = async (id, fileName) => {
     const isLoggedIn = !!localStorage.getItem("token");
 
@@ -80,54 +80,70 @@ function Sem1() {
     setSubject(subj);
     setSubjectSelected(true);
   };
-  const uploadAnswer = async (id) => {
-    setLoading(true);
-    setError(null);
-    try {
-      const fileInput = fileInputRef.current;
 
-      if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
-        setError("Please select a file for the answer");
-        setLoading(false);
-        return;
-      }
-
-      const formData = new FormData();
-      formData.append("answerFile", fileInput.files[0]);
-
-      await axios.post(
-        `http://localhost:8080/api/upload-answer/${id}`,
-        formData
-      );
-
-      fileInput.value = null;
-      getItems();
-    } catch (error) {
-      setError("Error uploading answer");
-    } finally {
-      setLoading(false);
-    }
+  const handleYearChange = (selectedYear) => {
+    setYear(selectedYear);
   };
+
+  const handleFileInputChange = (itemId, file) => {
+    setAnswerFileChosen((prev) => ({ ...prev, [itemId]: file }));
+  };
+
+  const uploadAnswer = async (id) => {
+  setLoading(true);
+  setError(null); // Reset error state
+  try {
+    const file = answerFileChosen[id];
+
+    if (!file) {
+      setError("Please select a file for the answer");
+      setLoading(false);
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("answerFile", file);
+
+    await axios.post(
+      `http://localhost:8080/api/upload-answer/${id}`,
+      formData
+    );
+
+    fileInputRefs.current[id].value = null;
+    setAnswerFileChosen((prev) => ({ ...prev, [id]: null })); // Reset file selection
+    // window.location.reload();
+    getItems();
+  
+  } catch (error) {
+    setError("Error uploading answer");
+  } finally {
+    setLoading(false);
+  }
+};
+
   useEffect(() => {
     getItems();
   }, [semester, subject, year]);
 
   return (
     <div>
-      {" "}
-      <Navbar />
-      <div>
+      <div className="hii">
+        <Navbar />
+      </div>
+      <div style={{ overflowY: 'auto', maxHeight: '600px' }}>
         <h1 className="flex flex-row justify-center mt-10 font-bold text-[#ffff] text-[30px]">
           BSc IT Semester I
         </h1>
-        <div className="hello2 font-bold text-[#ffff]">
+        <div className="hello2 font-bold text-[#ffff] ">
           {subjectSelected ? (
             <div className={`selected-subject-box`}>{subject}</div>
           ) : (
             subjects.map((subj) => (
               <div
                 key={subj}
-                className={`subject-box ${subject === subj ? "selected" : ""}`}
+                className={`subject-box ${
+                  subject === subj ? "selected" : ""
+                }`}
                 onClick={() => handleSubjectClick(subj)}
               >
                 {subj}
@@ -135,11 +151,10 @@ function Sem1() {
             ))
           )}
         </div>
-        {/* Additional input fields for semester and year if needed */}
         <div>
           {loading && <p>Loading...</p>}
-          {error && <p>{error}</p>}
-          <div className="itemContainer text-[#ffff] ">
+       
+          <div className="itemContainer text-[#ffff] my-auto" >
             {subjectSelected &&
               items
                 .filter((item) => subject === "" || item.subject === subject)
@@ -151,37 +166,51 @@ function Sem1() {
                       </h3>
                       <div className="buttonContainer flex flex-row lg:w-[180px] lg:mr-[10rem] lg:gap-10 ">
                         <div className="flex flex-row lg:w-full lg:gap-5 ">
-                          {item.answerFile ? (
-                            <div className="flex items-center">
-                              <button
-                                onClick={() => downloadAnswerFile(item._id)}
-                                className="flex items-center"
-                              >
-                                <span className="mr-2">Answer:</span>
-                                <img src={download} alt="Download" />
-                              </button>
-                            </div>
+                        {item.answerFile ? (
+    <div className="flex items-center">
+      <button
+        onClick={() => downloadAnswerFile(item._id)}
+        className="flex items-center"
+      >
+        <span className="mr-2">Answer:</span>
+        <img src={download} alt="Download" />
+      </button>
+    </div>
                           ) : (
                             <div className="const flex flex-row lg:gap-5 ">
-                              {" "}
-                              {/* Add this container for horizontal layout */}
-                              {answerFileChosen ? (
-                                <p>Click on "Upload" to upload your answer</p>
+                              {answerFileChosen[item._id] ? (
+                                <button
+                                  onClick={() => uploadAnswer(item._id)}
+                                  disabled={loading}
+                                  className="bg-[#d84914] text-[11px] px-2  rounded-md"
+                                >
+                                  {loading ? "Uploading..." : "Upload"}
+                                </button>
                               ) : (
                                 <>
                                   <input
                                     type="file"
-                                    id="answerFileInput"
-                                    ref={fileInputRef}
+                                    id={`answerFileInput-${item._id}`}
+                                    ref={(ref) =>
+                                      (fileInputRefs.current[item._id] = ref)
+                                    }
                                     style={{ display: "none" }}
+                                    onChange={(e) =>
+                                      handleFileInputChange(
+                                        item._id,
+                                        e.target.files[0]
+                                      )
+                                    }
                                   />
                                   <label
-                                    htmlFor="answerFileInput"
+                                    htmlFor={`answerFileInput-${item._id}`}
                                     className="w-[8rem] flex flex-col justify-center"
                                   >
                                     <button
                                       onClick={() =>
-                                        fileInputRef.current.click()
+                                        fileInputRefs.current[
+                                          item._id
+                                        ].click()
                                       }
                                       disabled={loading}
                                       className="choose text-[10px] "
@@ -193,17 +222,9 @@ function Sem1() {
                                   </label>
                                 </>
                               )}
-                              <button
-                                onClick={() => uploadAnswer(item._id)}
-                                disabled={loading}
-                                className="bg-[#d84914] text-[11px] px-2  rounded-md "
-                              >
-                                {loading ? "Uploading..." : "Upload"}
-                              </button>
                             </div>
                           )}
                         </div>
-
                         <div className="flex items-center ">
                           <button
                             onClick={() =>
