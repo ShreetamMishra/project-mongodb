@@ -34,3 +34,9 @@
 input[type='file']{
     display: none;
 }
+@media (max-width: 464px){
+    .glass{
+    margin-top: 140px;
+    margin-left: 50px;
+    }
+}

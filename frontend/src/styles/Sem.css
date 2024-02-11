@@ -35,7 +35,7 @@
 
 @media screen and (max-width: 768px){
   .hello2 {
-    padding: 100px 100px 0 100px;
+    padding: 138px 100px 0 100px;
   }
 }
 .selected-subject-box strong {
@@ -147,6 +147,13 @@
     .itemContainer{
       padding: 0 20px 0 20px;
     }
+    .hii{
+      margin: -40px 0 0 0;
+    }
+    .hello2{
+      /* margin-left: 20px; */
+      padding: 138px 17px 0 100px;
+    }
   }
   @media (max-width: 768px) {
     .itemBox1 {
@@ -163,4 +170,11 @@
   .buttonContainer {
     margin-top: 10px; /* Adjust the margin as needed */
   }
-  
+  @media (max-width: 400px) {
+    .item1{
+      margin: 14px -8px 1px 78px;
+    }
+    h3{
+      font-size: 12px;
+    }
+  }
