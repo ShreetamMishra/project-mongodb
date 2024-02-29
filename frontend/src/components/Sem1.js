@@ -41,12 +41,10 @@ function Sem1() {
   };
   const downloadFile = async (id, fileName) => {
     const isLoggedIn = !!localStorage.getItem("token");
-
-    // If not logged in, display an alert and navigate to /login
     if (!isLoggedIn) {
       alert("Please login first.");
       window.location.href = "/login";
-      return; // Stop further execution
+      return; 
     }
     try {
       const res = await axios.get(`http://localhost:8080/api/download/${id}`, {
@@ -91,7 +89,7 @@ function Sem1() {
 
   const uploadAnswer = async (id) => {
   setLoading(true);
-  setError(null); // Reset error state
+  setError(null);
   try {
     const file = answerFileChosen[id];
 
@@ -110,8 +108,7 @@ function Sem1() {
     );
 
     fileInputRefs.current[id].value = null;
-    setAnswerFileChosen((prev) => ({ ...prev, [id]: null })); // Reset file selection
-    // window.location.reload();
+    setAnswerFileChosen((prev) => ({ ...prev, [id]: null })); 
     getItems();
   
   } catch (error) {

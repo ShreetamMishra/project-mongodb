@@ -8,25 +8,25 @@
     padding: 20px;
     border-radius: 10px;
     
-    z-index: 2; /* Set z-index to a higher value */
+    z-index: 2; 
   }
   
   h1 {
     color: #000000;
     z-index: 3;
-    z-index: 2; /* Set z-index to a higher value */
+    z-index: 2;
   }
   
   .typewriter {
     color: #000000;
     font-size: 1.2em;
     margin-top: 10px;
-    z-index: 3; /* Set z-index to a higher value */
+    z-index: 3; 
   }
   
   .btn-container {
     margin-top: 20px;
-    z-index: 3; /* Set z-index to a higher value */
+    z-index: 3;
   }
   
   .btn {
@@ -38,7 +38,7 @@
     cursor: pointer;
     transition: background-color 0.3s, box-shadow 0.3s;
     border-radius: 5px;
-    z-index: 4; /* Set z-index to a higher value */
+    z-index: 4; 
   }
   
   .btn-info {
@@ -66,5 +66,5 @@
     overflow: hidden;
  
   z-index: 10000;
-  /* position: relative; */
+  
   }

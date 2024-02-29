@@ -22,14 +22,10 @@ export default function Username() {
     validateOnBlur: false,
     validateOnChange: false,
     onSubmit : async values => {
-      // if (values.username === 'admin123') {
-      //   // If the username is 'admin123', navigate to '/update'
-      //   navigate('/password');
-      // } else {
-        // For other usernames, navigate to '/password'
+     
         setUsername(values.username);
         navigate('/password');
-      // }
+      
     }
   })
 

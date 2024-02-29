@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from "../assets/content-writing.png"
-import '../styles/Navbar.css'; // Import a separate CSS file for styling
+import '../styles/Navbar.css';
 import Logo from "../assets/VSIT.png";
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));

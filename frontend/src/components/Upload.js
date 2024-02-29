@@ -16,7 +16,7 @@ const Upload = () => {
   const [subject, setSubject] = useState("");
   const [year, setYear] = useState("");
 
-  // Define a mapping between semesters and subjects
+ 
   const semesterSubjects = {
     "1stSem": [
       "Imperative Programming",
@@ -65,10 +65,10 @@ const Upload = () => {
       "Cyber laws",
       "Geographic Informations Systems",
     ],
-    // Add more semesters and subjects as needed
+    
   };
 
-  // Generate subject options based on the selected semester
+  
   const subjectOptions = semesterSubjects[semester] || [];
 
   const getItems = async () => {
@@ -157,8 +157,8 @@ const Upload = () => {
         formData
       );
 
-      fileInput.value = null; // Clear the file input after uploading
-      getItems(); // Refresh the items list after adding an answer
+      fileInput.value = null;
+      getItems(); 
     } catch (error) {
       setError("Error uploading answer");
     } finally {
@@ -199,7 +199,7 @@ const Upload = () => {
             <option value="4thSem">4th Semester</option>
             <option value="5thSem">5th Semester</option>
             <option value="6thSem">6th Semester</option>
-            {/* Add more semesters as needed */}
+           
           </select>
           <select
             value={subject}

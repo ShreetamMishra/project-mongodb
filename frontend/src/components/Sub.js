@@ -1,7 +1,5 @@
 import React from 'react';
-import '../styles/Sub.css'; // Import CSS for styling
-
-// Component for displaying subjects in a semester
+import '../styles/Sub.css'; 
 function SemesterSubjects({ subjects }) {
   return (
     <div className='semester-box'>
@@ -15,7 +13,7 @@ function SemesterSubjects({ subjects }) {
 }
 
 export default function Sub() {
-  // Define subjects for each semester
+ 
   const semesters = [
     [
       "Imperative Programming",
@@ -72,7 +70,7 @@ export default function Sub() {
         <h1 className='text-[#ffffff] text-[2rem] max767:text-[2rem]'>Our Services</h1>
         <p className='text-[12px]'>To Provide These Paper Questions</p>
         <p className='text-[12px]'>To Get the Questions Click On Get Start</p>
-        {/* Render each semester with its subjects */}
+       
         <div className="semester-container">
           {semesters.map((semesterSubjects, index) => (
             <div key={index}>

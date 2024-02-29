@@ -34,7 +34,6 @@ export default function Recovery() {
     }
   }
 
-  // handler of resend OTP
   function resendOTP(){
 
     let sentPromise = generateOTP(username);

@@ -38,10 +38,8 @@ export default function Password() {
         localStorage.setItem('token', token);
         
         if (username === 'admin123') {
-          // If the username and password match, navigate to '/upload'
           navigate('/upload');
         } else {
-          // For other cases, navigate to '/profile'
           navigate('/select');
         }
       })

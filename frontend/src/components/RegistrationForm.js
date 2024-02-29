@@ -18,15 +18,14 @@ const RegistrationForm = () => {
     },
     onSubmit: async (values) => {
       try {
-        // Combine the entered OTP with user data for validation
         const userDataWithOTP = { ...values, enteredOTP: otp };
         const response = await validateOTPAndRegister(userDataWithOTP);
-        toast.success(response); // Display success message upon successful registration and OTP validation
+        toast.success(response);
         setTimeout(() => {
-          navigate('/validate'); // Redirect to '/validate' page after success (adjust this as needed)
+          navigate('/validate');
         }, 2000);
       } catch (error) {
-        toast.error(error.error || 'Registration failed.'); // Display error message if registration fails
+        toast.error(error.error || 'Registration failed.'); 
       }
     },
   });

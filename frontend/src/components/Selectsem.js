@@ -9,8 +9,6 @@ function SelectSem() {
 
   const handleSemesterClick = (semester) => {
     setSelectedSemester(semester);
-
-    // Use navigate to redirect to the desired route based on the selected semester
     switch (semester) {
       case 1:
         navigate('/sem1');

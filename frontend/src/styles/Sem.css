@@ -2,7 +2,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-   /* Change color as needed */
   padding: 10px;
   margin: 10px;
 }
@@ -72,27 +71,27 @@
 
   
   .subject-box:nth-child(1) {
-    background-color: #04d107; /* Light Red for subject 1 */
+    background-color: #04d107; 
   }
   
   .subject-box:nth-child(2) {
-    background-color: #04d107; /* Light Green for subject 2 */
+    background-color: #04d107; 
   }
   
   .subject-box:nth-child(3) {
-    background-color: #04d107; /* Light Blue for subject 3 */
+    background-color: #04d107; 
   }
   
   .subject-box:nth-child(4) {
-    background-color: #04d107; /* Light Yellow for subject 4 */
+    background-color: #04d107; 
   }
   
   .subject-box:nth-child(5) {
-    background-color: #04d107; /* Light Orange for subject 5 */
+    background-color: #04d107; 
   }
   
   .subject-box:nth-child(6) {
-    background-color: #04d107; /* Light Purple for subject 6 */
+    background-color: #04d107; 
   }
   
   .itemBox {
@@ -122,22 +121,22 @@
   .item1:nth-child(1),
   .item1:nth-child(4),
   .item1:nth-child(7) {
-    background-color: #04d107; /* Color for the first box */
+    background-color: #04d107;
   }
   
   .item1:nth-child(2),
   .item1:nth-child(5),
   .item1:nth-child(8) {
-    background-color: #04d107; /* Color for the second box */
+    background-color: #04d107; 
   }
   
   .item1:nth-child(3),
   .item1:nth-child(6),
   .item1:nth-child(9) {
-    background-color: #04d107; /* Color for the third box */
+    background-color: #04d107; 
   }
   
-  /* Add more nth-child rules as needed */
+ 
   
   
   .itemBox1 {
@@ -168,7 +167,7 @@
   }
   
   .buttonContainer {
-    margin-top: 10px; /* Adjust the margin as needed */
+    margin-top: 10px; 
   }
   @media (max-width: 400px) {
     .item1{

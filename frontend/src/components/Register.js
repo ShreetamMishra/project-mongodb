@@ -29,7 +29,6 @@ export default function Register() {
     validateOnBlur: false,
     validateOnChange: false,
     onSubmit: async (values) => {
-      // values.profile = file || ''; // Assign profile image base64 to values
       
       try {
         await registerUser(values);
@@ -50,14 +49,13 @@ export default function Register() {
 
   const handleOTPSubmit = async () => {
     try {
-      const { enteredOTP, email, username, password } = formik.values; // Extract required values
+      const { enteredOTP, email, username, password } = formik.values; 
   
       const response = await axios.post('/api/validate-otp-and-register', {
         enteredOTP,
         email,
         username,
         password,
-        // Include other necessary data for registration
       });
   
       if (response.status === 201) {
@@ -93,8 +91,6 @@ export default function Register() {
           <div className={styles.glass} style={{ width: '45%', paddingTop: '0em' }}>
 
             {!showOTPField ? (
-              // Display this section if OTP has not been sent
-              
               <form className="" onSubmit={formik.handleSubmit}>
                  <div className="profile flex justify-center py-4">
               <label htmlFor="profile">
@@ -128,7 +124,7 @@ export default function Register() {
 
               </form>
             ) : (
-              // Display this section if OTP has been sent
+             
               <div className="textbox flex flex-col items-center gap-6">
                 <input
                   {...formik.getFieldProps('enteredOTP')}

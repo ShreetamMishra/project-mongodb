@@ -1,5 +1,4 @@
 .select-sem-container {
-  /* margin-top: 100px; */
   display: flex;
   flex-direction: column;
   padding: 100px 280px 0 250px;
@@ -17,35 +16,35 @@
   border-radius: 7px;
 }
 .sem-box:nth-child(1) {
-  background-color: #04d107; /* Light Red for Semester 1 */
+  background-color: #04d107; 
 }
 
 .sem-box:nth-child(2) {
-  background-color: #04d107; /* Light Green for Semester 2 */
+  background-color: #04d107; 
 }
 
 .sem-box:nth-child(3) {
-  background-color: #04d107; /* Light Blue for Semester 3 */
+  background-color: #04d107; 
 }
 
 .sem-box:nth-child(4) {
-  background-color: #04d107; /* Light Yellow for Semester 4 */
+  background-color: #04d107; 
 }
 
 .sem-box:nth-child(5) {
-  background-color: #04d107; /* Light Orange for Semester 5 */
+  background-color: #04d107; 
 }
 
 .sem-box:nth-child(6) {
-  background-color: #04d107; /* Light Purple for Semester 6 */
+  background-color: #04d107; 
 }
 
 .selected {
-  background-color: #04d107; /* Light Sky Blue - Change this color for selected state */
+  background-color: #04d107; 
 }
 @media screen and (max-width: 1000px){
   .select-sem-container {
-    /* margin-top: 100px; */
+ 
     display: flex;
     flex-direction: column;
     padding: 100px 150px 0 150px;
@@ -60,7 +59,7 @@
 @media screen and (max-width: 400px){
   .select-sem-container{
     padding: 203px 0px 0px 96px;
-    /* margin-left: 40px; */
+    
   }
 }
 @media screen and (max-width: 500px){

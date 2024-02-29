@@ -43,13 +43,11 @@ export default function Profile() {
     }
   })
 
-  /** formik doensn't support file upload so we need to create this handler */
   const onUpload = async e => {
     const base64 = await convertToBase64(e.target.files[0]);
     setFile(base64);
   }
 
-  // logout handler function
   function userLogout(){
     localStorage.removeItem('token');
     navigate('/')
