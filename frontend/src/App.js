@@ -1,6 +1,5 @@
 import React from 'react'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
+import { createBrowserRouter, RouterProvider, useLocation } from 'react-router-dom';
 import Home from './components/Home';
 /** import all components */
 import Username from './components/Username';
@@ -67,8 +66,12 @@ const router = createBrowserRouter([
     },
   
     {
-        path : '/',
+        path : '/select',
         element : <SelectSem></SelectSem>
+    },
+    {
+        path : '/',
+        element : <Home></Home>
     },
     {
         path : '/sem1',
@@ -104,10 +107,13 @@ const router = createBrowserRouter([
 //     </main>
 //   )
 // }
+
 export default function App() {
+   
     return (
+        
       <main>
-        <div className="hero">
+        {/* <div className="hero" >
           <img src={heroImage} alt="bubble" />
           <img src={heroImage} alt="bubble" />
           <img src={heroImage} alt="bubble" />
@@ -117,7 +123,7 @@ export default function App() {
           <img src={heroImage} alt="bubble" />
           <img src={heroImage} alt="bubble" />
           <img src={heroImage} alt="bubble" />
-        </div>
+        </div> */}
         <RouterProvider router={router}></RouterProvider>
       </main>
     );

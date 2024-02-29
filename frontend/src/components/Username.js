@@ -7,6 +7,7 @@ import { usernameValidate } from '../helper/validate'
 import { useAuthStore } from '../store/store'
 import Navbar from './Navbar';
 import styles from '../styles/Username.module.css';
+import heroImage from '../assets/bubble.png';
 
 export default function Username() {
 
@@ -33,7 +34,18 @@ export default function Username() {
   })
 
   return (
-    <div>
+    <div className='skm'>
+      <div className="hero" >
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+        </div>
 <Navbar />    <div className="container mx-auto">
 
       <Toaster position='top-center' reverseOrder={false}></Toaster>

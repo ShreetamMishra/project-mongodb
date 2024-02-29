@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "../styles/SelectSem.css";
 import Navbar from './Navbar';
+import heroImage from '../assets/bubble.png';
 function SelectSem() {
   const [selectedSemester, setSelectedSemester] = useState(null);
   const navigate = useNavigate();
@@ -35,7 +36,18 @@ function SelectSem() {
   };
 
   return (
-    <div> <Navbar />
+    <div className='skm'>
+      <div className="hero" >
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+        </div> <Navbar />
     <div className="select-sem-container text-[#ffff]">
       <div
         className={`sem-box ${selectedSemester === 1 ? 'selected' : ''} font-bold`}
@@ -73,7 +85,8 @@ function SelectSem() {
       >
         TY BSc IT Semester VI
       </div>
-    </div></div>
+    </div>
+    <div className='h-[15rem]'></div></div>
   );
 }
 

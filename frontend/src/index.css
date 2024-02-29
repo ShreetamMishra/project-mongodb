@@ -10,7 +10,7 @@
 
 body{
     background: #dcdce6;
-    background-image: url('./assets/background copy.png');
+    /* background-image: url('./assets/background copy.png'); */
     /* margin-left: 10px; */
     overflow: hidden;
     height:100%;
@@ -27,6 +27,9 @@ body{
     bottom: 0px;
     /* overflow: hidden; */
     }  
+    body[data-route='/'] .hero {
+      display: none;
+    }
     .hero img{
       width: 50px;
       animation: bubble 7s linear infinite;

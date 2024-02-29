@@ -6,6 +6,7 @@ import { generateOTP, verifyOTP } from '../helper/helper';
 import { useNavigate } from 'react-router-dom'
 import Navbar from './Navbar';
 import "../styles/Recovery.css";
+import heroImage from '../assets/bubble.png';
 export default function Recovery() {
 
   const { username } = useAuthStore(state => state.auth);
@@ -52,7 +53,18 @@ export default function Recovery() {
     
   }
 
-  return (<div>
+  return (<div className='skm'>
+    <div className="hero" >
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+        </div>
     <Navbar />
     <div className="container mx-auto">
 

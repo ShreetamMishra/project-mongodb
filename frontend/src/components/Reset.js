@@ -9,6 +9,7 @@ import useFetch from '../hooks/fetch.hook'
 import Navbar from './Navbar';
 import styles from '../styles/Username.module.css';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import heroImage from '../assets/bubble.png';
 export default function Reset() {
 
   const { username } = useAuthStore(state => state.auth);
@@ -44,7 +45,18 @@ export default function Reset() {
   if(status && status !== 201) return <Navigate to={'/password'} replace={true}></Navigate>
 
   return (
-    <div>
+    <div className='skm'>
+      <div className="hero" >
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+        </div>
       <Navbar />
     <div className="container mx-auto">
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Navbar from './Navbar';
 import download from '../assets/download-solid.svg';
-
+import heroImage from '../assets/bubble.png';
 function Sem4() {
   const [semester] = useState('Semester4');
   const [subject, setSubject] = useState('');
@@ -19,7 +19,7 @@ function Sem4() {
     'Computer-Oriented Statistical Techniques',
     'Software Engineering',
     'Computer Graphics and Animation',
-    'Computer Graphics and Animation', // Duplicate entry, might be an error?
+    'Skill Enhancement Course Practical',
     'Core Java Practical',
   ];
 
@@ -94,11 +94,22 @@ function Sem4() {
   }, [semester, subject, year]);
 
   return (
-    <div>
+    <div className='skm'>
+      <div className="hero" >
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+        </div>
       <div className="hii">
         <Navbar />
       </div>
-      <div>
+      <div style={{ overflowY: 'auto', maxHeight: '600px' }}>
         <h1 className="flex flex-row justify-center mt-10 font-bold text-[#ffff] text-[30px]">
           BSc IT Semester IV
         </h1>
@@ -119,7 +130,7 @@ function Sem4() {
         </div>
         <div>
           {loading && <p>Loading...</p>}
-          <div className="itemContainer">
+          <div className="itemContainer text-[#ffff] ">
             {subjectSelected &&
               items
                 .filter((item) => subject === '' || item.subject === subject)
@@ -129,8 +140,8 @@ function Sem4() {
                       <h3>
                         {item.semester} {item.subject} ({item.year})
                       </h3>
-                      <div className="buttonContainer">
-                        <div className="flex items-center">
+                      <div className="buttonContainer flex flex-row lg:w-[180px] lg:mr-[10rem] lg:gap-10 ">
+                        <div className="flex flex-row lg:w-full lg:gap-5 ">
                           {item.answerFile ? (
                             <div className="flex items-center">
                               <button
@@ -141,37 +152,51 @@ function Sem4() {
                                 <img src={download} alt="Download" />
                               </button>
                             </div>
-                          ) : (
-                            <div className="const flex items-center">
-                              <input
-                                type="file"
-                                id={`answerFileInput-${item._id}`}
-                                ref={(ref) => (fileInputRefs.current[item._id] = ref)}
-                                style={{ display: 'none' }}
-                                onChange={(e) => handleFileInputChange(item._id, e.target.files[0])}
-                              />
-                              <label
-                                htmlFor={`answerFileInput-${item._id}`}
-                                className="w-[8rem] flex flex-col justify-center"
-                              >
-                                <button
-                                  onClick={() => fileInputRefs.current[item._id].click()}
-                                  disabled={loading}
-                                  className="choose text-[10px]"
-                                >
-                                  <p className="w-full flex flex-col justify-center mt-[1.5px]">
-                                    Choose File
-                                  </p>
-                                </button>
-                              </label>
-                              {answerFileChosen[item._id] && (
+                           ) : (
+                            <div className="const flex flex-row lg:gap-5 ">
+                              {answerFileChosen[item._id] ? (
                                 <button
                                   onClick={() => uploadAnswer(item._id)}
                                   disabled={loading}
-                                  className="bg-[#d84914] text-[11px] px-2 rounded-md ml-2"
+                                  className="bg-[#d84914] text-[11px] px-2  rounded-md"
                                 >
-                                  {loading ? 'Uploading...' : 'Upload'}
+                                  {loading ? "Uploading..." : "Upload"}
                                 </button>
+                              ) : (
+                                <>
+                                  <input
+                                    type="file"
+                                    id={`answerFileInput-${item._id}`}
+                                    ref={(ref) =>
+                                      (fileInputRefs.current[item._id] = ref)
+                                    }
+                                    style={{ display: "none" }}
+                                    onChange={(e) =>
+                                      handleFileInputChange(
+                                        item._id,
+                                        e.target.files[0]
+                                      )
+                                    }
+                                  />
+                                  <label
+                                    htmlFor={`answerFileInput-${item._id}`}
+                                    className="w-[8rem] flex flex-col justify-center"
+                                  >
+                                    <button
+                                      onClick={() =>
+                                        fileInputRefs.current[
+                                          item._id
+                                        ].click()
+                                      }
+                                      disabled={loading}
+                                      className="choose text-[10px] "
+                                    >
+                                      <p className="w-full flex flex-col justify-center mt-[1.5px]">
+                                        Choose File
+                                      </p>
+                                    </button>
+                                  </label>
+                                </>
                               )}
                             </div>
                           )}
@@ -192,6 +217,7 @@ function Sem4() {
           </div>
         </div>
       </div>
+      <div className="h-[48rem]"> </div>
     </div>
   );
 }

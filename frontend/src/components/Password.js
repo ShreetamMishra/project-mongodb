@@ -9,6 +9,7 @@ import { useAuthStore } from '../store/store'
 import { verifyPassword } from '../helper/helper'
 import styles from '../styles/Username.module.css';
 import Navbar from './Navbar';
+import heroImage from '../assets/bubble.png';
 export default function Password() {
 
   const navigate = useNavigate()
@@ -41,7 +42,7 @@ export default function Password() {
           navigate('/upload');
         } else {
           // For other cases, navigate to '/profile'
-          navigate('/');
+          navigate('/select');
         }
       })
     }
@@ -50,7 +51,19 @@ export default function Password() {
   if(isLoading) return <h1 className='text-2xl font-bold'>isLoading</h1>;
   if(serverError) return <h1 className='text-xl text-red-500'>{serverError.message}</h1>
 
-  return (<div>
+  return (<div className='skm'>
+            <div className="hero" >
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+        </div>
+
     <Navbar />
     <div className="container mx-auto">
 

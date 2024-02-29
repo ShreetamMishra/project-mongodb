@@ -1,23 +1,18 @@
 import React from 'react';
 import "../styles/Home.css";
-import { Link } from "react-router-dom";
+import Hero from './Hero';
 import Navbar from './Navbar';
+import Footer from './Footer';
+import Sub from './Sub';
 function Home() {
   return (
-    <div>
+    <div className='hero2'style={{ overflowY: 'auto', maxHeight: '860px' }} >
         <Navbar />
-    <div className="lander">
-      <h1 className='font-bold text-[20px]'>Project</h1>
-      <p className="typewriter">Previous year quistion are available in this Site</p>
-      
-      <div className="btn-container">
-        <Link to="/login" className="btn btn-info">
-          Login
-        </Link>
-        <Link to="/register" className="btn btn-success">
-          Signup
-        </Link>
-      </div>
+        <div >
+    <Hero />
+    <Sub />
+    <Footer />
+   
     </div>
     </div>
   );

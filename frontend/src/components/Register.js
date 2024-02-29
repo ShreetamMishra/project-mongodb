@@ -11,6 +11,7 @@ import styles from '../styles/Username.module.css';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import Navbar from './Navbar';
+import heroImage from '../assets/bubble.png';
 axios.defaults.baseURL = process.env.REACT_APP_SERVER_DOMAIN;
 export default function Register() {
   const navigate = useNavigate();
@@ -73,7 +74,18 @@ export default function Register() {
     }
   };
   return (
-    <div>
+    <div className='skm'>
+      <div className="hero" >
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+        </div>
       <Navbar />
       <div className="container mx-auto ">
         <Toaster position="top-center" reverseOrder={false} />

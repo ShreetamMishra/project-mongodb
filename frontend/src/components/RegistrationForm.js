@@ -5,7 +5,7 @@ import { useFormik } from 'formik';
 import { validateOTPAndRegister } from '../helper/helper'; // Import your OTP validation function
 import Navbar from './Navbar';
 import styles from '../styles/Username.module.css';
-
+import heroImage from '../assets/bubble.png';
 const RegistrationForm = () => {
   const navigate = useNavigate();
   const [otp, setOTP] = useState('');
@@ -32,7 +32,18 @@ const RegistrationForm = () => {
   });
 
   return (
-    <div>
+    <div className='skm'>
+      <div className="hero" >
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+        </div>
       <Navbar />
     <div className="container mx-auto">
       <Toaster position='top-center' reverseOrder={false}></Toaster>
@@ -58,7 +69,8 @@ const RegistrationForm = () => {
           </form>
         </div>
       </div>
-    </div></div>
+    </div>
+    <div className="h-[48rem]"> </div></div>
   );
 };
 

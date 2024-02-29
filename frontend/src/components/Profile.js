@@ -11,6 +11,7 @@ import Navbar from './Navbar';
 import styles from '../styles/Username.module.css';
 import extend from '../styles/Profile.module.css'
 import '../styles/Profile.css';
+import heroImage from '../assets/bubble.png';
 export default function Profile() {
 
   const [file, setFile] = useState();
@@ -58,7 +59,18 @@ export default function Profile() {
   if(serverError) return <h1 className='text-xl text-red-500'>{serverError.message}</h1>
 
   return (
-    <div>
+    <div className='skm'>
+      <div className="hero" >
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+        </div>
       <Navbar />
     <div className="container mx-auto">
 

@@ -3,7 +3,7 @@ import axios from "axios";
 import Navbar from "./Navbar";
 import "../styles/Sem.css";
 import download from "../assets/download-solid.svg";
-
+import heroImage from '../assets/bubble.png';
 function Sem1() {
   const [semester] = useState("Semester1");
   const [subject, setSubject] = useState("");
@@ -126,7 +126,18 @@ function Sem1() {
   }, [semester, subject, year]);
 
   return (
-    <div>
+    <div className='skm'>
+      <div className="hero" >
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+        </div>
       <div className="hii">
         <Navbar />
       </div>
@@ -243,6 +254,7 @@ function Sem1() {
           </div>
         </div>
       </div>
+      <div className="h-[48rem]"> </div>
     </div>
   );
 }

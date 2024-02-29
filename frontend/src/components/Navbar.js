@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from "../assets/content-writing.png"
 import '../styles/Navbar.css'; // Import a separate CSS file for styling
-
+import Logo from "../assets/VSIT.png";
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
   const [showDropdown, setShowDropdown] = useState(false);
@@ -21,7 +21,7 @@ const Navbar = () => {
     <div className={`navbar-container  ${isLoggedIn ? 'logged-in' : ''}`}>
       <nav className="navbar">
         <div className="logo">
-          <Link to="/" ><img  className="w-10" src={logo}/>
+          <Link to="/" ><img  className="w-14" src={Logo}/>
           </Link>
         </div>
         <div className="menu-icon" onClick={toggleDropdown}>

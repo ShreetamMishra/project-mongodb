@@ -58,4 +58,13 @@
     background-color: #333;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
+  .hero2{
+    background-image: url('../assets/image\ 2\ \(3\).png');
   
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+ 
+  z-index: 10000;
+  /* position: relative; */
+  }

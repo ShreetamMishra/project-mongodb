@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../styles/Upload.css";
 import axios from "axios";
+import heroImage from '../assets/bubble.png';
 import Navbar from "./Navbar";
 const Upload = () => {
   const [items, setItems] = useState([]);
@@ -170,7 +171,18 @@ const Upload = () => {
   }, []);
 
   return (
-    <div>
+    <div className='skm'>
+      <div className="hero" >
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+          <img src={heroImage} alt="bubble" />
+        </div>
       {" "}
       <Navbar />
       <div className="app">
@@ -290,6 +302,7 @@ const Upload = () => {
           <div className="colorfulElements"></div>
         </div>
       </div>
+      <div className="h-[48rem]"> </div>
     </div>
   );
 };

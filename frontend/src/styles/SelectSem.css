@@ -69,3 +69,8 @@
     margin-left: 40px;
   }
 }
+.skm{
+  background-image: url('../assets/background copy.png');
+  overflow: hidden;
+  height: 100%;
+}
