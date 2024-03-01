@@ -1,9 +1,9 @@
 .semester-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    height: 110vh; /* Set height to full viewport height */
+    justify-content: center; 
+    align-items: center; 
+    height: 110vh; 
   }
   
   .semester-box {
@@ -11,7 +11,7 @@
     border-radius: 8px;
     padding: 10px;
     margin-bottom: 20px;
-   width: 30rem; /* 3 boxes per row with margin */
+   width: 30rem; 
     margin-right: 20px;
     box-sizing: border-box;
     height: 20rem;
@@ -19,7 +19,7 @@
   }
   
   .subject {
-    /* background-color: #f0f0f0; */
+
     background-color: #260669;
     padding: 8px 12px;
     margin-bottom: 8px;
@@ -34,24 +34,24 @@
   @media (max-width: 1460px){
     .semester-container {
       
-        height: 140vh; /* Set height to full viewport height */
+        height: 140vh; 
       }
   } 
   @media (max-width: 991px) {
     .semester-container {
       
-        height: 250vh; /* Set height to full viewport height */
+        height: 250vh; 
       }
   }
   
   @media (max-width: 767px) {
     .semester-container {
       
-        height: 280vh; /* Set height to full viewport height */
+        height: 280vh;
       }
     .semester-box {
-        width: 22rem; /* 1 box per row on mobile screens */
-      margin-right: 0; /* No margin on mobile screens */
-      margin-bottom: 10px; /* Smaller spacing between semesters on mobile */
+        width: 22rem; 
+      margin-right: 0; 
+      margin-bottom: 10px; 
     }
   }

@@ -8,8 +8,8 @@ import ENV from '../config.js';
 let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'shreetammishra01@gmail.com',
-        pass: 'rsfghymlzapvfbyh'
+        user: 'hope23205@gmail.com',
+        pass: 'mutxofjmoenzwmth'
     }
 });
 

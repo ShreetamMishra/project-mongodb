@@ -65,14 +65,14 @@ export async function sendOTPEmail(username, userEmail, otp) {
         let transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'shreetammishra01@gmail.com',
-                pass: 'rsfghymlzapvfbyh'
+                user: 'hope23205@gmail.com',
+                pass: 'mutxofjmoenzwmth'
             }
         });
 
         // Construct email message
         let mailOptions = {
-            from: 'shreetammishra01@gmail.com',
+            from: 'hope23205@gmail.com',
             to: userEmail,
             subject: 'Verification OTP for Registration',
             text: `Hello ${username}, Your OTP is: ${otp}`
