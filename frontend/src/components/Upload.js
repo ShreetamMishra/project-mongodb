@@ -11,7 +11,7 @@ const Upload = () => {
   const fileInputRefQuestion = useRef(null); 
   const fileInputRefAnswer = useRef(null); 
   const [answerFileChosen, setAnswerFileChosen] = useState(false);
-
+  const fileInputRefs = useRef({});
   const [semester, setSemester] = useState("");
   const [subject, setSubject] = useState("");
   const [year, setYear] = useState("");
@@ -137,30 +137,32 @@ const Upload = () => {
     }
   };
 
+  const handleFileInputChange = (itemId, file) => {
+    setAnswerFileChosen((prev) => ({ ...prev, [itemId]: file }));
+  };
+
   const uploadAnswer = async (id) => {
     setLoading(true);
     setError(null);
     try {
-      const fileInput = fileInputRef.current;
+      const file = answerFileChosen[id];
 
-      if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
-        setError("Please select a file for the answer");
+      if (!file) {
+        setError('Please select a file for the answer');
         setLoading(false);
         return;
       }
 
       const formData = new FormData();
-      formData.append("answerFile", fileInput.files[0]);
+      formData.append('answerFile', file);
 
-      await axios.post(
-        `http://localhost:8080/api/upload-answer/${id}`,
-        formData
-      );
+      await axios.post(`http://localhost:8080/api/upload-answer/${id}`, formData);
 
-      fileInput.value = null;
-      getItems(); 
+      fileInputRefs.current[id].value = null;
+      setAnswerFileChosen((prev) => ({ ...prev, [id]: null }));
+      getItems();
     } catch (error) {
-      setError("Error uploading answer");
+      setError('Error uploading answer');
     } finally {
       setLoading(false);
     }
@@ -169,7 +171,6 @@ const Upload = () => {
   useEffect(() => {
     getItems();
   }, []);
-
   return (
     <div className='skm'>
       <div className="hero" >
@@ -234,7 +235,7 @@ const Upload = () => {
             {loading ? "Adding..." : "Add"}
           </button>
         </div>
-        {error && <p className="error">{error}</p>}
+     
         <div className="items-container">
           <div className="items">
             {loading ? (
@@ -260,34 +261,27 @@ const Upload = () => {
                       </button>
                     ) : (
                       <div>
-                        {answerFileChosen ? (
-                          <p>Click on "Upload" to upload your answer</p>
+                        {answerFileChosen[item._id] ? (
+                          <button onClick={() => uploadAnswer(item._id)} disabled={loading}>
+                            {loading ? 'Uploading...' : 'Upload Answer'}
+                          </button>
                         ) : (
                           <>
                             <input
                               type="file"
-                              id="answerFileInput"
-                              ref={fileInputRef}
-                              style={{ display: "none" }}
+                              id={`answerFileInput-${item._id}`}
+                              ref={(ref) => (fileInputRefs.current[item._id] = ref)}
+                              style={{ display: 'none' }}
+                              onChange={(e) => handleFileInputChange(item._id, e.target.files[0])}
                             />
-                            <label htmlFor="answerFileInput">
-                              <button
-                                onClick={() => fileInputRef.current.click()}
-                                disabled={loading}
-                                className="choose ml-2"
-                              >
+                            <label htmlFor={`answerFileInput-${item._id}`}>
+                              <button onClick={() => fileInputRefs.current[item._id].click()} disabled={loading}
+                              className="choose ml-2">
                                 Choose File
                               </button>
                             </label>
                           </>
                         )}
-
-                        <button
-                          onClick={() => uploadAnswer(item._id)}
-                          disabled={loading}
-                        >
-                          {loading ? "Uploading..." : "Upload Answer"}
-                        </button>
                       </div>
                     )}
                   </div>
@@ -296,7 +290,8 @@ const Upload = () => {
             ) : (
               <p>No items available</p>
             )}
-          </div>
+       
+                     </div>
           <div className="colorfulElements"></div>
           <div className="colorfulElements"></div>
           <div className="colorfulElements"></div>
