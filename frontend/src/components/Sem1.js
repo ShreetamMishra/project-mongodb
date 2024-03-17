@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef} from "react";
 import axios from "axios";
 import Navbar from "./Navbar";
 import "../styles/Sem.css";
 import download from "../assets/download-solid.svg";
 import heroImage from '../assets/bubble.png';
+import { useNavigate } from "react-router-dom";
 function Sem1() {
   const [semester] = useState("Semester1");
   const [subject, setSubject] = useState("");
@@ -14,7 +15,7 @@ function Sem1() {
   const [subjectSelected, setSubjectSelected] = useState(false);
   const [answerFileChosen, setAnswerFileChosen] = useState({});
   const fileInputRefs = useRef({});
-
+const Navigate=useNavigate();
   const subjects = [
     "Imperative Programming",
     "Digital Electronics",
@@ -55,6 +56,7 @@ function Sem1() {
       link.href = window.URL.createObjectURL(blob);
       link.download = fileName || "file.pdf";
       link.click();
+      Navigate("/rate");
     } catch (error) {
       console.log(error);
     }
@@ -70,6 +72,7 @@ function Sem1() {
       link.href = window.URL.createObjectURL(blob);
       link.download = fileName || "answerFile.pdf";
       link.click();
+      Navigate("/rate");
     } catch (error) {
       console.log(error);
     }
@@ -96,6 +99,18 @@ function Sem1() {
     if (!file) {
       setError("Please select a file for the answer");
       setLoading(false);
+      return;
+    }
+    const fileExtension = file.name.split(".").pop().toLowerCase();
+
+    // Allowed file types
+    const allowedFileTypes = ["jpg", "jpeg", "pdf"];
+
+    // Check if the selected file type is allowed
+    if (!allowedFileTypes.includes(fileExtension)) {
+      setError("Only JPG, JPEG, and PDF files are allowed");
+      setLoading(false);
+      alert("Only JPG, JPEG, and PDF files are allowed");
       return;
     }
 

@@ -3,6 +3,7 @@ import axios from 'axios';
 import Navbar from './Navbar';
 import download from '../assets/download-solid.svg';
 import heroImage from '../assets/bubble.png';
+import { useNavigate } from "react-router-dom";
 function Sem4() {
   const [semester] = useState('Semester4');
   const [subject, setSubject] = useState('');
@@ -13,7 +14,7 @@ function Sem4() {
   const [subjectSelected, setSubjectSelected] = useState(false);
   const [answerFileChosen, setAnswerFileChosen] = useState({});
   const fileInputRefs = useRef({});
-
+  const Navigate=useNavigate();
   const subjects = [
     'Introduction to Embedded Systems',
     'Computer-Oriented Statistical Techniques',
@@ -48,6 +49,7 @@ function Sem4() {
       link.href = window.URL.createObjectURL(blob);
       link.download = fileName || 'file.pdf';
       link.click();
+      Navigate("/rate");
     } catch (error) {
       console.log(error);
     }
@@ -73,7 +75,18 @@ function Sem4() {
         setLoading(false);
         return;
       }
+      const fileExtension = file.name.split(".").pop().toLowerCase();
 
+      // Allowed file types
+      const allowedFileTypes = ["jpg", "jpeg", "pdf"];
+  
+      // Check if the selected file type is allowed
+      if (!allowedFileTypes.includes(fileExtension)) {
+        setError("Only JPG, JPEG, and PDF files are allowed");
+        setLoading(false);
+        alert("Only JPG, JPEG, and PDF files are allowed");
+        return;
+      }
       const formData = new FormData();
       formData.append('answerFile', file);
 

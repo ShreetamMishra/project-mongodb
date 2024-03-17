@@ -3,6 +3,8 @@ import "../styles/Upload.css";
 import axios from "axios";
 import heroImage from '../assets/bubble.png';
 import Navbar from "./Navbar";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const Upload = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -16,7 +18,7 @@ const Upload = () => {
   const [subject, setSubject] = useState("");
   const [year, setYear] = useState("");
 
- 
+ const Navigate=useNavigate();
   const semesterSubjects = {
     "1stSem": [
       "Imperative Programming",
@@ -170,6 +172,18 @@ const Upload = () => {
   const uploadAnswer = async (id) => {
     setLoading(true);
     setError(null);
+    // const fileExtension = file.name.split(".").pop().toLowerCase();
+
+    // // Allowed file types
+    // const allowedFileTypes = ["jpg", "jpeg", "pdf"];
+
+    // // Check if the selected file type is allowed
+    // if (!allowedFileTypes.includes(fileExtension)) {
+    //   setError("Only JPG, JPEG, and PDF files are allowed");
+    //   setLoading(false);
+    //   alert("Only JPG, JPEG, and PDF files are allowed");
+    //   return;
+    // }
     try {
       const file = answerFileChosen[id];
 
@@ -178,7 +192,18 @@ const Upload = () => {
         setLoading(false);
         return;
       }
+      const fileExtension = file.name.split(".").pop().toLowerCase();
 
+      // Allowed file types
+      const allowedFileTypes = ["jpg", "jpeg", "pdf"];
+  
+      // Check if the selected file type is allowed
+      if (!allowedFileTypes.includes(fileExtension)) {
+        setError("Only JPG, JPEG, and PDF files are allowed");
+        setLoading(false);
+        alert("Only JPG, JPEG, and PDF files are allowed");
+        return;
+      }
       const formData = new FormData();
       formData.append('answerFile', file);
 
@@ -193,7 +218,9 @@ const Upload = () => {
       setLoading(false);
     }
   };
-
+const handleFeedback = async () =>{
+Navigate("/feedback");
+};
   useEffect(() => {
     getItems();
   }, []);
@@ -201,6 +228,10 @@ const Upload = () => {
     <div className='feedback-wrapper'>
       {" "}
       <Navbar />
+
+      <button className="feedback-button" onClick={handleFeedback}>
+      Feedback
+    </button>
       <div className="app">
         <div className="addItems">
           <select
