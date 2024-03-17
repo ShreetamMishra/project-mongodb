@@ -88,15 +88,40 @@ const Upload = () => {
     e.preventDefault();
     setLoading(true);
     setError(null);
+  
+    // Get the selected file
+    const file = fileInputRefQuestion.current.files[0];
+  
+    // Check if a file is selected
+    if (!file) {
+      setError("Please select a file");
+      setLoading(false);
+      return;
+    }
+  
+    // Get the file extension
+    const fileExtension = file.name.split(".").pop().toLowerCase();
+  
+    // Allowed file types
+    const allowedFileTypes = ["jpg", "jpeg", "pdf"];
+  
+    // Check if the selected file type is allowed
+    if (!allowedFileTypes.includes(fileExtension)) {
+      setError("Only JPG, JPEG, and PDF files are allowed");
+      setLoading(false);
+      alert("Only JPG, JPEG, and PDF files are allowed");
+      return;
+    }
+  
     try {
       const formData = new FormData();
-      formData.append("file", fileInputRefQuestion.current.files[0]);
+      formData.append("file", file);
       formData.append("semester", semester);
       formData.append("subject", subject);
       formData.append("year", year);
-
+  
       await axios.post("http://localhost:8080/api/upload-file", formData);
-
+  
       fileInputRefQuestion.current.value = null;
       getItems(); // Refresh the items list after adding
     } catch (error) {
@@ -105,6 +130,7 @@ const Upload = () => {
       setLoading(false);
     }
   };
+  
 
   const downloadFile = async (id, fileName) => {
     try {
@@ -172,18 +198,7 @@ const Upload = () => {
     getItems();
   }, []);
   return (
-    <div className='skm'>
-      <div className="hero" >
-          <img src={heroImage} alt="bubble" />
-          <img src={heroImage} alt="bubble" />
-          <img src={heroImage} alt="bubble" />
-          <img src={heroImage} alt="bubble" />
-          <img src={heroImage} alt="bubble" />
-          <img src={heroImage} alt="bubble" />
-          <img src={heroImage} alt="bubble" />
-          <img src={heroImage} alt="bubble" />
-          <img src={heroImage} alt="bubble" />
-        </div>
+    <div className='feedback-wrapper'>
       {" "}
       <Navbar />
       <div className="app">
@@ -227,7 +242,7 @@ const Upload = () => {
             <option value="2022">2022</option>
             <option value="2023">2023</option>
             <option value="2024">2024</option>
-            {/* Add other years as needed */}
+            
           </select>
 
           <input type="file" className="w-10" ref={fileInputRefQuestion} />

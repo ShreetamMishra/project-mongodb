@@ -32,5 +32,7 @@ router.route('/upload-answer/:id').post(upload.single("answerFile"), addAnswer);
 // PUT Methods
 router.route('/updateuser').put(Auth, controller.updateUser);
 router.route('/resetPassword').put(controller.verifyUser, controller.resetPassword);
+router.route('/feedback').post(controller.submitFeedback);
+router.route('/feedback/all').get(controller.getAllFeedback);
 
 export default router;

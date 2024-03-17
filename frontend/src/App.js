@@ -21,8 +21,8 @@ import Sem3 from './components/Sem3';
 import Sem4 from './components/Sem4';
 import Sem5 from './components/Sem5';
 import Sem6 from './components/Sem6';
-
-
+import Rating from './components/Rating';
+import Feedback from './components/Feedback';
 const router = createBrowserRouter([
     {
         path : '/login',
@@ -41,12 +41,20 @@ const router = createBrowserRouter([
         element : <ProtectRoute><Password /></ProtectRoute>
     },
     {
+        path : '/feedback',
+        element : <Feedback></Feedback>
+    },
+    {
         path : '/profile',
         element : <AuthorizeUser><Profile /></AuthorizeUser>
     },
     {
         path : '/recovery',
         element : <Recovery></Recovery>
+    },
+    {
+        path : '/rate',
+        element : <Rating></Rating>
     },
     {
         path : '/reset',
