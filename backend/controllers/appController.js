@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 import ENV from '../config.js'
 import otpGenerator from 'otp-generator';
 import nodemailer from 'nodemailer';
+import Feedback from '../model/Feedback.js';
 export async function verifyUser(req, res, next){
     try {
         
@@ -356,3 +357,27 @@ export async function resetPassword(req,res){
         return res.status(401).send({ error })
     }
 }
+ 
+export async function submitFeedback(req, res){
+    try {
+        // const { username } = req.user;
+        const { username, rating, comment } = req.body;
+        const feedback = new Feedback({ username, rating, comment });
+        await feedback.save();
+        res.status(201).json({ message: 'Feedback submitted successfully' });
+    } catch (error) {
+        console.error('Error submitting feedback:', error);
+        res.status(500).json({ error: 'Failed to submit feedback' });
+    }
+};
+
+// Get All Feedback
+export async function getAllFeedback(req, res){
+    try {
+        const feedbackEntries = await Feedback.find().sort({ createdAt: -1 });
+        res.json(feedbackEntries);
+    } catch (error) {
+        console.error('Error fetching feedback:', error);
+        res.status(500).json({ error: 'Failed to fetch feedback' });
+    }
+};
