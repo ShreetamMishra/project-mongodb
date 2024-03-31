@@ -45,9 +45,11 @@ function Sem3() {
         responseType: 'blob',
       });
       const blob = new Blob([res.data], { type: res.data.type });
+      const defaultFileName = 'file'; // Set a default file name here
+      const downloadFileName = fileName ? fileName :defaultFileName; // Use default if fileName is undefined
       const link = document.createElement('a');
       link.href = window.URL.createObjectURL(blob);
-      link.download = fileName || 'file.pdf';
+      link.download = downloadFileName;
       link.click();
       Navigate("/rate");
     } catch (error) {
@@ -78,7 +80,7 @@ function Sem3() {
       const fileExtension = file.name.split(".").pop().toLowerCase();
 
       // Allowed file types
-      const allowedFileTypes = ["jpg", "jpeg", "pdf"];
+      const allowedFileTypes = ["jpg", "jpeg", "pdf","word"];
   
       // Check if the selected file type is allowed
       if (!allowedFileTypes.includes(fileExtension)) {
@@ -158,7 +160,7 @@ function Sem3() {
                           {item.answerFile ? (
                             <div className="flex items-center">
                               <button
-                                onClick={() => downloadFile(item._id)}
+                                onClick={() => downloadFile(item._id, item.fileName)}
                                 className="flex items-center"
                               >
                                 <span className="mr-2">Answer:</span>

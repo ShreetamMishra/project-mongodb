@@ -41,26 +41,23 @@ const Navigate=useNavigate();
     }
   };
   const downloadFile = async (id, fileName) => {
-    const isLoggedIn = !!localStorage.getItem("token");
-    if (!isLoggedIn) {
-      alert("Please login first.");
-      window.location.href = "/login";
-      return; 
-    }
     try {
       const res = await axios.get(`http://localhost:8080/api/download/${id}`, {
         responseType: "blob",
       });
       const blob = new Blob([res.data], { type: res.data.type });
+      const defaultFileName = "quistion"; // Set a default file name here
+      const downloadFileName = fileName ? fileName : defaultFileName; // Use default if fileName is undefined
       const link = document.createElement("a");
       link.href = window.URL.createObjectURL(blob);
-      link.download = fileName || "file.pdf";
+      link.download = downloadFileName;
       link.click();
       Navigate("/rate");
     } catch (error) {
       console.log(error);
     }
   };
+  
   const downloadAnswerFile = async (id, fileName) => {
     try {
       const res = await axios.get(
@@ -68,9 +65,11 @@ const Navigate=useNavigate();
         { responseType: "blob" }
       );
       const blob = new Blob([res.data], { type: res.data.type });
+      const defaultFileName = "answer"; // Set a default file name here
+      const downloadFileName = fileName ? fileName : defaultFileName; // Use default if fileName is undefined
       const link = document.createElement("a");
       link.href = window.URL.createObjectURL(blob);
-      link.download = fileName || "answerFile.pdf";
+      link.download = downloadFileName;
       link.click();
       Navigate("/rate");
     } catch (error) {
@@ -104,7 +103,7 @@ const Navigate=useNavigate();
     const fileExtension = file.name.split(".").pop().toLowerCase();
 
     // Allowed file types
-    const allowedFileTypes = ["jpg", "jpeg", "pdf"];
+    const allowedFileTypes = ["jpg", "jpeg", "pdf","word"];
 
     // Check if the selected file type is allowed
     if (!allowedFileTypes.includes(fileExtension)) {
@@ -192,7 +191,7 @@ const Navigate=useNavigate();
                         {item.answerFile ? (
     <div className="flex items-center">
       <button
-        onClick={() => downloadAnswerFile(item._id)}
+        onClick={() => downloadAnswerFile(item._id, item.fileName)}
         className="flex items-center"
       >
         <span className="mr-2">Answer:</span>

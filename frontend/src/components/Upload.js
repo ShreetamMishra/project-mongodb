@@ -105,7 +105,7 @@ const Upload = () => {
     const fileExtension = file.name.split(".").pop().toLowerCase();
   
     // Allowed file types
-    const allowedFileTypes = ["jpg", "jpeg", "pdf"];
+    const allowedFileTypes = ["jpg", "jpeg", "pdf","word"];
   
     // Check if the selected file type is allowed
     if (!allowedFileTypes.includes(fileExtension)) {
@@ -140,15 +140,17 @@ const Upload = () => {
         responseType: "blob",
       });
       const blob = new Blob([res.data], { type: res.data.type });
+      const defaultFileName = "quistion"; // Set a default file name here
+      const downloadFileName = fileName ? fileName : defaultFileName; // Use default if fileName is undefined
       const link = document.createElement("a");
       link.href = window.URL.createObjectURL(blob);
-      link.download = fileName || "file.pdf";
+      link.download = downloadFileName;
       link.click();
     } catch (error) {
       console.log(error);
     }
   };
-
+  
   const downloadAnswerFile = async (id, fileName) => {
     try {
       const res = await axios.get(
@@ -156,14 +158,17 @@ const Upload = () => {
         { responseType: "blob" }
       );
       const blob = new Blob([res.data], { type: res.data.type });
+      const defaultFileName = "answer"; // Set a default file name here
+      const downloadFileName = fileName ? fileName : defaultFileName; // Use default if fileName is undefined
       const link = document.createElement("a");
       link.href = window.URL.createObjectURL(blob);
-      link.download = fileName || "answerFile.pdf";
+      link.download = downloadFileName;
       link.click();
     } catch (error) {
       console.log(error);
     }
   };
+  
 
   const handleFileInputChange = (itemId, file) => {
     setAnswerFileChosen((prev) => ({ ...prev, [itemId]: file }));
@@ -195,7 +200,7 @@ const Upload = () => {
       const fileExtension = file.name.split(".").pop().toLowerCase();
 
       // Allowed file types
-      const allowedFileTypes = ["jpg", "jpeg", "pdf"];
+      const allowedFileTypes = ["jpg", "jpeg", "pdf","word"];
   
       // Check if the selected file type is allowed
       if (!allowedFileTypes.includes(fileExtension)) {
@@ -302,9 +307,10 @@ Navigate("/feedback");
                     </button>
                     
                     {item.answerFile ? (
-                      <button onClick={() => downloadAnswerFile(item._id)}>
-                        Download Answer File
-                      </button>
+                     <button onClick={() => downloadAnswerFile(item._id, item.answerFileName)}>
+                     Download Answer File
+                   </button>
+                   
                     ) : (
                       <div>
                         {answerFileChosen[item._id] ? (
