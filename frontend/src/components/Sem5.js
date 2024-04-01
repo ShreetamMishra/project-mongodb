@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 function Sem5() {
   const [semester] = useState('Semester5');
   const [subject, setSubject] = useState('');
-  const [year] = useState('');
+  const [year, setYear] = useState("");
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
