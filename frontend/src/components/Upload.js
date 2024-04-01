@@ -60,10 +60,10 @@ const Upload = () => {
       "Linux Administration",
     ],
     "6thSem": [
-      "Internet Technology",
-      "Project Management",
+      "Business intelligence",
+      "software quality asurance",
       "Information Technology service management",
-      "Electives",
+      "security in computing",
       "Cyber laws",
       "Geographic Informations Systems",
     ],

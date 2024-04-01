@@ -16,12 +16,12 @@ function Sem6() {
   const fileInputRefs = useRef({});
 const Navigate=useNavigate();
   const subjects = [
-    'Internet Technology',
-    'Project Management',
-    'Information Technology service management',
-    'Electives',
-    'Cyber laws',
-    'Geographic Informations Systems',
+    "Business intelligence",
+    "software quality asurance",
+    "Information Technology service management",
+    "security in computing",
+    "Cyber laws",
+    "Geographic Informations Systems",
   ];
 
   const getItems = async () => {
