@@ -40,14 +40,21 @@ function Sem4() {
   };
 
   const downloadFile = async (id, fileName) => {
+    const isLoggedIn = !!localStorage.getItem("token");
+    if (!isLoggedIn) {
+      alert("Please login first.");
+      window.location.href = "/login";
+      return; 
+    }
+
     try {
       const res = await axios.get(`http://localhost:8080/api/download/${id}`, {
-        responseType: 'blob',
+        responseType: "blob",
       });
       const blob = new Blob([res.data], { type: res.data.type });
-      const defaultFileName = 'file'; // Set a default file name here
-      const downloadFileName = fileName ? fileName :defaultFileName; // Use default if fileName is undefined
-      const link = document.createElement('a');
+      const defaultFileName = "quistion"; // Set a default file name here
+      const downloadFileName = fileName ? fileName : defaultFileName; // Use default if fileName is undefined
+      const link = document.createElement("a");
       link.href = window.URL.createObjectURL(blob);
       link.download = downloadFileName;
       link.click();
@@ -56,10 +63,32 @@ function Sem4() {
       console.log(error);
     }
   };
-
+  
+  const downloadAnswerFile = async (id, fileName) => {
+    try {
+      const res = await axios.get(
+        `http://localhost:8080/api/download-answer/${id}`,
+        { responseType: "blob" }
+      );
+      const blob = new Blob([res.data], { type: res.data.type });
+      const defaultFileName = "answer"; // Set a default file name here
+      const downloadFileName = fileName ? fileName : defaultFileName; // Use default if fileName is undefined
+      const link = document.createElement("a");
+      link.href = window.URL.createObjectURL(blob);
+      link.download = downloadFileName;
+      link.click();
+      Navigate("/rate");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const handleSubjectClick = (subj) => {
     setSubject(subj);
     setSubjectSelected(true);
+  };
+
+  const handleYearChange = (selectedYear) => {
+    setYear(selectedYear);
   };
 
   const handleFileInputChange = (itemId, file) => {
@@ -67,42 +96,48 @@ function Sem4() {
   };
 
   const uploadAnswer = async (id) => {
-    setLoading(true);
-    setError(null);
-    try {
-      const file = answerFileChosen[id];
+  setLoading(true);
+  setError(null);
+  try {
+    const file = answerFileChosen[id];
 
-      if (!file) {
-        setError('Please select a file for the answer');
-        setLoading(false);
-        return;
-      }
-      const fileExtension = file.name.split(".").pop().toLowerCase();
-
-      // Allowed file types
-      const allowedFileTypes = ["jpg", "jpeg", "pdf","word"];
-  
-      // Check if the selected file type is allowed
-      if (!allowedFileTypes.includes(fileExtension)) {
-        setError("Only JPG, JPEG, and PDF files are allowed");
-        setLoading(false);
-        alert("Only JPG, JPEG, and PDF files are allowed");
-        return;
-      }
-      const formData = new FormData();
-      formData.append('answerFile', file);
-
-      await axios.post(`http://localhost:8080/api/upload-answer/${id}`, formData);
-
-      fileInputRefs.current[id].value = null;
-      setAnswerFileChosen((prev) => ({ ...prev, [id]: null }));
-      getItems();
-    } catch (error) {
-      setError('Error uploading answer');
-    } finally {
+    if (!file) {
+      setError("Please select a file for the answer");
       setLoading(false);
+      return;
     }
-  };
+    const fileExtension = file.name.split(".").pop().toLowerCase();
+
+    // Allowed file types
+    const allowedFileTypes = ["jpg", "jpeg", "pdf"];
+
+
+    // Check if the selected file type is allowed
+    if (!allowedFileTypes.includes(fileExtension)) {
+      setError("Only JPG, JPEG, and PDF files are allowed");
+      setLoading(false);
+      alert("Only JPG, JPEG, and PDFafiles are allowed");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("answerFile", file);
+
+    await axios.post(
+      `http://localhost:8080/api/upload-answer/${id}`,
+      formData
+    );
+
+    fileInputRefs.current[id].value = null;
+    setAnswerFileChosen((prev) => ({ ...prev, [id]: null })); 
+    getItems();
+  
+  } catch (error) {
+    setError("Error uploading answer");
+  } finally {
+    setLoading(false);
+  }
+};
 
   useEffect(() => {
     getItems();
@@ -145,10 +180,11 @@ function Sem4() {
         </div>
         <div>
           {loading && <p>Loading...</p>}
-          <div className="itemContainer text-[#ffff] ">
+       
+          <div className="itemContainer text-[#ffff] my-auto" >
             {subjectSelected &&
               items
-                .filter((item) => subject === '' || item.subject === subject)
+                .filter((item) => subject === "" || item.subject === subject)
                 .map((item) => (
                   <div className="item1" key={item._id}>
                     <div className="itemBox1">
@@ -157,17 +193,17 @@ function Sem4() {
                       </h3>
                       <div className="buttonContainer flex flex-row lg:w-[180px] lg:mr-[10rem] lg:gap-10 ">
                         <div className="flex flex-row lg:w-full lg:gap-5 ">
-                          {item.answerFile ? (
-                            <div className="flex items-center">
-                              <button
-                                onClick={() => downloadFile(item._id, item.fileName)}
-                                className="flex items-center"
-                              >
-                                <span className="mr-2">Answer:</span>
-                                <img src={download} alt="Download" />
-                              </button>
-                            </div>
-                           ) : (
+                        {item.answerFile ? (
+    <div className="flex items-center">
+      <button
+        onClick={() => downloadAnswerFile(item._id)}
+        className="flex items-center"
+      >
+        <span className="mr-2">Answer:</span>
+        <img src={download} alt="Download" />
+      </button>
+    </div>
+                          ) : (
                             <div className="const flex flex-row lg:gap-5 ">
                               {answerFileChosen[item._id] ? (
                                 <button
@@ -216,9 +252,11 @@ function Sem4() {
                             </div>
                           )}
                         </div>
-                        <div className="flex items-center">
+                        <div className="flex items-center ">
                           <button
-                            onClick={() => downloadFile(item._id, item.fileName)}
+                            onClick={() =>
+                              downloadFile(item._id, item.fileName)
+                            }
                             className="flex items-center"
                           >
                             <span className="mr-2">Question:</span>
@@ -236,5 +274,4 @@ function Sem4() {
     </div>
   );
 }
-
 export default Sem4;

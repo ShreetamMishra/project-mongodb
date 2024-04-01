@@ -41,6 +41,13 @@ const Navigate=useNavigate();
     }
   };
   const downloadFile = async (id, fileName) => {
+    const isLoggedIn = !!localStorage.getItem("token");
+    if (!isLoggedIn) {
+      alert("Please login first.");
+      window.location.href = "/login";
+      return; 
+    }
+
     try {
       const res = await axios.get(`http://localhost:8080/api/download/${id}`, {
         responseType: "blob",
@@ -103,7 +110,8 @@ const Navigate=useNavigate();
     const fileExtension = file.name.split(".").pop().toLowerCase();
 
     // Allowed file types
-    const allowedFileTypes = ["jpg", "jpeg", "pdf","word"];
+    const allowedFileTypes = ["jpg", "jpeg", "pdf"];
+
 
     // Check if the selected file type is allowed
     if (!allowedFileTypes.includes(fileExtension)) {

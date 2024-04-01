@@ -105,7 +105,7 @@ const Upload = () => {
     const fileExtension = file.name.split(".").pop().toLowerCase();
   
     // Allowed file types
-    const allowedFileTypes = ["jpg", "jpeg", "pdf","word"];
+    const allowedFileTypes = ["jpg", "jpeg", "pdf"];
   
     // Check if the selected file type is allowed
     if (!allowedFileTypes.includes(fileExtension)) {
