@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 import avatar from '../assets/profile.png';
 import toast, { Toaster } from 'react-hot-toast';
@@ -10,6 +10,7 @@ import { verifyPassword } from '../helper/helper'
 import styles from '../styles/Username.module.css';
 import Navbar from './Navbar';
 import heroImage from '../assets/bubble.png';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
 export default function Password() {
 
   const navigate = useNavigate()
@@ -45,7 +46,7 @@ export default function Password() {
       })
     }
   })
-
+  const [showPassword, setShowPassword] = useState(false); 
   if(isLoading) return <h1 className='text-2xl font-bold'>isLoading</h1>;
   if(serverError) return <h1 className='text-xl text-red-500'>{serverError.message}</h1>
 
@@ -76,10 +77,24 @@ export default function Password() {
                   <img src={apiData?.profile || avatar} className={styles.profile_img} alt="avatar" />
               </div>
 
-              <div className="textbox flex flex-col items-center gap-6">
-                  <input {...formik.getFieldProps('password')} className={styles.textbox} type="text" placeholder='Password' />
-                  <button className={styles.btn} type='submit'>Sign In</button>
+              <div className="textbox flex flex-col items-center gap-6 relative">
+                <div className={styles.passwordContainer}>
+                  <input
+                    {...formik.getFieldProps('password')}
+                    className={styles.textbox}
+                    type={showPassword ? 'text' : 'password'} // Conditionally render password type
+                    placeholder='Password'
+                  />
+                  <div className={styles.eyeIconContainer}>
+                    {showPassword ?
+                      <FiEyeOff className={styles.eyeIcon} onClick={() => setShowPassword(false)} /> :
+                      <FiEye className={styles.eyeIcon} onClick={() => setShowPassword(true)} />
+                    }
+                  </div>
+                </div>
+                <button className={styles.btn} type='submit'>Sign In</button>
               </div>
+
 
               <div className="text-center py-4">
                 <span className='text-gray-500'>Forgot Password? <Link className='text-red-500' to="/recovery">Recover Now</Link></span>
